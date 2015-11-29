@@ -1,7 +1,9 @@
 # Mountain-Monster-Mobile
 The source code of the Mountain Monster mobile game.
 
-https://itunes.apple.com/us/app/mountain-monster/id1041815415
+**iTunes link:** https://itunes.apple.com/us/app/mountain-monster/id1041815415
+
+**Level editor for this game:** https://github.com/NewKrok/Mountain-Monster-level-editor
 
 ## Dependencies:
 
