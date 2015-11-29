@@ -9,6 +9,7 @@ The source code of the Mountain Monster mobile game.
 
   * **Starling 1.7** The Cross Platform Game Engine. http://gamua.com/starling/
   * **Feathers 2.2.0** UI Components for Starling. http://feathersui.com
+  * **Caurina Tweener 1.33.74** Tweener for ActionScript projects. https://code.google.com/p/tweener/
   * **Box2D 2.1a** A free 2D physics engine for Flash. http://www.box2dflash.org
   * **Snapdragon 1.3.1** A free native extension for Adobe AIR. http://snapdragon.flashplusplus.net
   * **Flash++ Package** Usefull classes for game development. https://github.com/NewKrok/Flash-pack
