@@ -35,9 +35,9 @@ package src.menu
 			useHandCursor = true;
 			_worldID = worldID;
 
-			if( worldID <= 1 )
+			if( worldID <= 2 )
 			{
-				addChild( _back = new Image( StaticAssetManager.instance.getTexture( "level_pack_" + worldID ) ) );
+				addChild( _back = new Image( StaticAssetManager.instance.getTexture( "level_pack_" + ( worldID == 2 ? 1 : worldID ) ) ) );
 
 				if( !DataManager.getIsLevelPackUnlocked( worldID ) )
 				{
