@@ -32,10 +32,10 @@ package src.game.module.help
 				'Be careful in the blizzard!'.toUpperCase(),
 			],
 			new <String> [
-				'Avoid the dangerous jungle wasp!'.toUpperCase()
+				'description...!'.toUpperCase()
 			],
 			new <String> [
-				'There are some moving ground in this area. Drive safety!'.toUpperCase()
+				'description...'.toUpperCase()
 			]
 		];
 
