@@ -12,6 +12,8 @@ package src.data
 
 		private var _starValues:Vector.<uint> = new Vector.<uint>;
 
+		private var _libraryElements:Vector.<LibraryElementVO> = new Vector.<LibraryElementVO>;
+
 		private var _startPoint:Point;
 		private var _finishPoint:Point;
 
@@ -46,6 +48,14 @@ package src.data
 			for( i = 0; i < levelEditorObject.starPoints.length; i++ )
 			{
 				_coinPoints.push( new Point( levelEditorObject.starPoints[ i ].x, levelEditorObject.starPoints[ i ].y ) );
+			}
+
+			if ( levelEditorObject.libraryElements )
+			{
+				for( i = 0; i < levelEditorObject.libraryElements.length; i++ )
+				{
+					_libraryElements.push( new LibraryElementVO( levelEditorObject.libraryElements[ i ].className, new Point( levelEditorObject.libraryElements[ i ].x, levelEditorObject.libraryElements[ i ].y ), levelEditorObject.libraryElements[ i ].scale ) );
+				}
 			}
 
 			for( i = 0; i < levelEditorObject.bridgePoints.length; i++ )
@@ -104,6 +114,11 @@ package src.data
 		public function get coinPoints():Vector.<Point>
 		{
 			return _coinPoints;
+		}
+
+		public function get libraryElements():Vector.<LibraryElementVO>
+		{
+			return _libraryElements;
 		}
 
 		public function get bridgePoints():Vector.<Point>
