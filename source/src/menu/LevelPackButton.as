@@ -37,7 +37,7 @@ package src.menu
 
 			if( worldID <= 2 )
 			{
-				addChild( _back = new Image( StaticAssetManager.instance.getTexture( "level_pack_" + ( worldID == 2 ? 1 : worldID ) ) ) );
+				addChild( _back = new Image( StaticAssetManager.instance.getTexture( "level_pack_" + worldID ) ) );
 
 				if( !DataManager.getIsLevelPackUnlocked( worldID ) )
 				{
@@ -102,6 +102,10 @@ package src.menu
 						if ( _worldID == 1 )
 						{
 							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_LEVEL_PACK_1 );
+						}
+						else if ( _worldID == 2 )
+						{
+							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_LEVEL_PACK_2 );
 						}
 					}
 					else

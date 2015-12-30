@@ -9,5 +9,6 @@ package src.constant
 		public static const UNLOCK_CAR_TYPE_1:uint = 50;
 		public static const UNLOCK_CAR_TYPE_2:uint = 100;
 		public static const UNLOCK_CAR_TYPE_3:uint = 15;
+		public static const UNLOCK_CAR_TYPE_4:uint = 125;
 	}
 }

@@ -96,7 +96,7 @@ package src.game.library.crates
 		{
 			this._body.SetLinearVelocity( new b2Vec2() );
 			this._body.SetAngularVelocity( 0 );
-			
+
 			this._body.SetPositionAndAngle( new b2Vec2( this._position.x / CBox2D.PIXELS_TO_METRE, this._position.y / CBox2D.PIXELS_TO_METRE ), 0 );
 		}
 

@@ -58,6 +58,17 @@ package src.assets
 					/*BODY_X_OFFSET*/   0,
 					/*BODY_Y_OFFSET*/   0
 			),
+			new CarData(
+					/*ID*/              4,
+					/*GRAPHIC ID*/      8,
+					/*NAME*/            "TURTLE",
+					/*STAR_REQUIRED*/	CStarRequireds.UNLOCK_CAR_TYPE_4,
+					/*SPEED*/           12,
+					/*ROTATION*/        7,
+					/*DAMPING*/         .65,
+					/*BODY_X_OFFSET*/   0,
+					/*BODY_Y_OFFSET*/   0
+			),
 
 			// CUSTOM CARS =============================================
 			new CarData(
@@ -102,7 +113,18 @@ package src.assets
 					/*ROTATION*/        7,
 					/*DAMPING*/         .6,
 					/*BODY_X_OFFSET*/   0,
-					/*BODY_Y_OFFSET*/   -3
+					/*BODY_Y_OFFSET*/   0
+			),
+			new CarData(
+					/*ID*/              1004,
+					/*GRAPHIC ID*/      9,
+					/*NAME*/            "HAWK",
+					/*STAR_REQUIRED*/	0,
+					/*SPEED*/           14,
+					/*ROTATION*/        8,
+					/*DAMPING*/         .5,
+					/*BODY_X_OFFSET*/   0,
+					/*BODY_Y_OFFSET*/   0
 			)
 		];
 

@@ -68,6 +68,7 @@
 
 		public static var LOG_ENABLED:Boolean = true;
 		public static var IS_ALL_LEVEL_ENABLED:Boolean = true;
+		public static var IS_ALL_CAR_ENABLED:Boolean = true;
 		public static var IS_IOS:Boolean;
 		public static var AD_BLOCKED:Boolean;
 		public static var APP_ID:String = "net.flashplusplus.mountainmonster";
