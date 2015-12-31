@@ -87,7 +87,7 @@ package src.assets
 			{
 				if ( _terrainTextureVOs[i].type == CTerrainTextureType.GROUND_TEXTURE && _terrainTextureVOs[i].id == levelPackId )
 				{
-					return _terrainTextureVOs[i].bitmapData;
+					return _terrainTextureVOs[i].bitmapData.clone();
 				}
 			}
 
@@ -102,7 +102,7 @@ package src.assets
 			{
 				if ( _terrainTextureVOs[i].type == CTerrainTextureType.FILL_TEXTURE && _terrainTextureVOs[i].id == levelPackId )
 				{
-					return _terrainTextureVOs[i].bitmapData;
+					return _terrainTextureVOs[i].bitmapData.clone();
 				}
 			}
 

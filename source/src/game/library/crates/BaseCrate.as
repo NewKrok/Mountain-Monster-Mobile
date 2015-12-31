@@ -21,7 +21,7 @@ package src.game.library.crates
 	public class BaseCrate
 	{
 		protected var FRICTION:Number = 0.8;
-		protected var DENSITY:Number = 0.3;
+		protected var DENSITY:Number = 0.6;
 
 		protected var FILTER_CATEGORY:Number = 3;
 		protected var FILTER_MASK:Number = 3;
