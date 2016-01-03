@@ -57,7 +57,6 @@
     </android>
     <supportedLanguages>en</supportedLanguages>
     <versionLabel></versionLabel>
-    
     <extensions>
         <extensionID>net.flashplusplus.Snapdragon</extensionID>
     </extensions>
