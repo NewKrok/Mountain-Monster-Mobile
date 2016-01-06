@@ -3,18 +3,15 @@
  */
 package src.menu.module.rating.view
 {
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
-
 	import net.fpp.starling.StaticAssetManager;
 
 	import src.assets.Fonts;
-	import src.assets.RuntimeTextures;
 	import src.menu.module.rating.events.RatingModuleEvent;
 
 	import starling.display.Button;
 
 	import starling.display.Image;
+	import starling.display.Quad;
 
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -25,7 +22,7 @@ package src.menu.module.rating.view
 		private var _elementContainer:Sprite;
 
 		private var _background:Image;
-		private var _darkBackground:Image;
+		private var _darkBackground:Quad;
 		private var _title:TextField;
 
 		private var _rateButton:Button;
@@ -47,7 +44,7 @@ package src.menu.module.rating.view
 
 		private function createElements():void
 		{
-			_darkBackground = new Image ( RuntimeTextures.DARK_RECTANGLE );
+			_darkBackground = new Quad( stage.stageWidth, stage.stageHeight, 0x000000, true );
 			_darkBackground.width = stage.stageWidth;
 			_darkBackground.height = stage.stageHeight;
 			_darkBackground.alpha = .5;

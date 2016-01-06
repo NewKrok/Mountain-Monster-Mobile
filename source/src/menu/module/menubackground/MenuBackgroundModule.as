@@ -9,13 +9,13 @@ package src.menu.module.menubackground
 	import flash.geom.Point;
 	import flash.sensors.Accelerometer;
 
+	import net.fpp.starling.module.AModule;
+
 	import src.menu.module.menubackground.view.MenuBackgroundView;
 
 	import starling.core.Starling;
 
-	import starling.display.Sprite;
-
-	public class MenuBackgroundModule extends Sprite
+	public class MenuBackgroundModule extends AModule
 	{
 		private var _view:MenuBackgroundView;
 

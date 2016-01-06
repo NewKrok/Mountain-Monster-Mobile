@@ -16,7 +16,7 @@ package src.menu
 
 	import src.assets.Fonts;
 	import src.assets.Levels;
-	import src.constant.CPurchaseItems;
+	import src.constant.CPurchaseItem;
 	import src.data.DataManager;
 	import src.data.LevelResultVO;
 	import src.menu.events.MenuEvent;
@@ -226,7 +226,7 @@ package src.menu
 					break;
 
 				case 'remove_ad':
-					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_REMOVE_AD );
+					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_REMOVE_AD );
 					break;
 
 				case 'car_select':

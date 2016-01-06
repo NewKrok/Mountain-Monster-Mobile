@@ -9,7 +9,7 @@ package src.menu
 	import rv2.sound.SoundHandler;
 
 	import src.assets.Fonts;
-	import src.constant.CPurchaseItems;
+	import src.constant.CPurchaseItem;
 	import src.data.DataManager;
 	import src.menu.events.MenuEvent;
 	import src.utils.ComponentCheckbox;
@@ -160,7 +160,7 @@ package src.menu
 					pause();
 					break;
 				case "remove_ad":
-					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_REMOVE_AD );
+					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_REMOVE_AD );
 					break;
 				case "restore":
 					StaticStoreManager.restoreTransactions();

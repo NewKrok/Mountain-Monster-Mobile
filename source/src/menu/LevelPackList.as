@@ -13,8 +13,8 @@
 	import src.AbstractPanel;
 	import src.assets.Fonts;
 	import src.assets.Levels;
-	import src.constant.CPurchaseItems;
-	import src.constant.CStarRequireds;
+	import src.constant.CPurchaseItem;
+	import src.constant.CStarRequired;
 	import src.data.DataManager;
 	import src.menu.events.MenuEvent;
 	import src.menu.module.carselect.carselectbutton.CarSelectButton;
@@ -145,9 +145,13 @@
 		{
 			var allEarnedStarCount:int = DataManager.getAllEarnedStarCount();
 
-			if ( allEarnedStarCount >= CStarRequireds.UNLOCK_LEVEL_PACK_1 )
+			if ( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_1 )
 			{
 				unlockLevelPack( 1 );
+			}
+			if ( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_2 )
+			{
+				unlockLevelPack( 2 );
 			}
 		}
 
@@ -164,7 +168,7 @@
 					break;
 
 				case 'remove_ad':
-					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_REMOVE_AD );
+					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_REMOVE_AD );
 					break;
 
 				case 'car_select':
@@ -185,7 +189,7 @@
 
 			if( !DataManager.getIsLevelPackUnlocked( levelPackID ) )
 			{
-				StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_LEVEL_PACK_1 );
+				StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_1 );
 			}
 			else
 			{

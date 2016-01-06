@@ -1,6 +1,6 @@
 package src.assets
 {
-	import src.constant.CStarRequireds;
+	import src.constant.CStarRequired;
 	import src.data.CarData;
 
 	public class CarDatas
@@ -29,7 +29,7 @@ package src.assets
 					/*ID*/              3,
 					/*GRAPHIC ID*/      6,
 					/*NAME*/            "SANTA ROCK",
-					/*STAR_REQUIRED*/	CStarRequireds.UNLOCK_CAR_TYPE_3,
+					/*STAR_REQUIRED*/	CStarRequired.UNLOCK_CAR_TYPE_3,
 					/*SPEED*/           10,
 					/*ROTATION*/        6,
 					/*DAMPING*/         .8,
@@ -40,7 +40,7 @@ package src.assets
 					/*ID*/              1,
 					/*GRAPHIC ID*/      1,
 					/*NAME*/            "SNOWY",
-					/*STAR_REQUIRED*/	CStarRequireds.UNLOCK_CAR_TYPE_1,
+					/*STAR_REQUIRED*/	CStarRequired.UNLOCK_CAR_TYPE_1,
 					/*SPEED*/           11,
 					/*ROTATION*/        6,
 					/*DAMPING*/         .8,
@@ -51,7 +51,7 @@ package src.assets
 					/*ID*/              2,
 					/*GRAPHIC ID*/      5,
 					/*NAME*/            "GHOST",
-					/*STAR_REQUIRED*/	CStarRequireds.UNLOCK_CAR_TYPE_2,
+					/*STAR_REQUIRED*/	CStarRequired.UNLOCK_CAR_TYPE_2,
 					/*SPEED*/           11,
 					/*ROTATION*/        6,
 					/*DAMPING*/         .65,
@@ -62,7 +62,7 @@ package src.assets
 					/*ID*/              4,
 					/*GRAPHIC ID*/      8,
 					/*NAME*/            "TURTLE",
-					/*STAR_REQUIRED*/	CStarRequireds.UNLOCK_CAR_TYPE_4,
+					/*STAR_REQUIRED*/	CStarRequired.UNLOCK_CAR_TYPE_4,
 					/*SPEED*/           12,
 					/*ROTATION*/        7,
 					/*DAMPING*/         .65,

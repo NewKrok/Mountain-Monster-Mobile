@@ -1,23 +1,24 @@
 package src.game.module.help
 {
 	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.starling.module.AModule;
 
 	import rv2.sound.SoundHandler;
 
 	import src.assets.Fonts;
-	import src.assets.RuntimeTextures;
 	import src.data.DataManager;
 
 	import starling.display.Button;
 
 	import starling.display.Image;
+	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.text.TextField;
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
 
-	public class HelpModule extends Sprite
+	public class HelpModule extends AModule
 	{
 		private const HELP_TEXTS:Vector.<Vector.<String>> = new <Vector.<String>> [
 			new <String> [
@@ -32,7 +33,7 @@ package src.game.module.help
 				'Be careful in the blizzard!'.toUpperCase(),
 			],
 			new <String> [
-				'description...!'.toUpperCase()
+				'Figyelj oda a ladakra, konnyen elmozdulnak ha rajuk hajtasz.'.toUpperCase()
 			],
 			new <String> [
 				'description...'.toUpperCase()
@@ -41,7 +42,7 @@ package src.game.module.help
 
 		private var _onComplete:Function;
 
-		private var _back:Image;
+		private var _back:Quad;
 
 		private var _content:Sprite;
 		private var _contentBack:Image;
@@ -66,7 +67,7 @@ package src.game.module.help
 		{
 			removeEventListener( Event.ADDED_TO_STAGE, build );
 
-			this._back = new Image ( RuntimeTextures.DARK_RECTANGLE );
+			this._back = new Quad( stage.stageWidth, stage.stageHeight, 0x000000, true );
 			this._back.width = this.stage.stageWidth;
 			this._back.height = this.stage.stageHeight;
 			this._back.alpha = .8;
@@ -75,14 +76,14 @@ package src.game.module.help
 			addChild( _content = new Sprite );
 			_content.addChild( _contentBack = new Image( StaticAssetManager.instance.getTexture( "help_back" ) ) );
 
-			_content.addChild( _contentText = new TextField( 237, 100, HELP_TEXTS[ _worldId ][ _currentIndex ] ) );
+			_content.addChild( _contentText = new TextField( 233, 100, HELP_TEXTS[ _worldId ][ _currentIndex ] ) );
 			_contentText.touchable = false;
 			_contentText.fontSize = 15;
 			_contentText.color = 0xFFFFFF;
 			_contentText.fontName = Fonts.getAachenLightFont().name;
 			_contentText.hAlign = HAlign.CENTER;
 			_contentText.vAlign = VAlign.CENTER;
-			_contentText.x = 120;
+			_contentText.x = 122;
 			_contentText.y = 5.5;
 
 			_content.addChild( _nextButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), "NEXT" ) );

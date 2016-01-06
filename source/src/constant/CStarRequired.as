@@ -3,9 +3,11 @@
  */
 package src.constant
 {
-	public class CStarRequireds
+	public class CStarRequired
 	{
 		public static const UNLOCK_LEVEL_PACK_1:uint = 50;
+		public static const UNLOCK_LEVEL_PACK_2:uint = 125;
+
 		public static const UNLOCK_CAR_TYPE_1:uint = 50;
 		public static const UNLOCK_CAR_TYPE_2:uint = 100;
 		public static const UNLOCK_CAR_TYPE_3:uint = 15;

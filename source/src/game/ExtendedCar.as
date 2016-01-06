@@ -4,6 +4,8 @@ package src.game
 
 	import box2dassets.Car;
 
+	import src.constant.CBox2D;
+
 	import src.data.CarData;
 
 	public class ExtendedCar extends Car
@@ -27,7 +29,7 @@ package src.game
 
 		public function ExtendedCar( $world:b2World, $positionX:Number, $positionY:Number, $carData:CarData )
 		{
-			super( $world, $positionX, $positionY, false, Game.CAR_FILTER_CATEGORY, Game.CAR_FILTER_MASK );
+			super( $world, $positionX, $positionY, false, CBox2D.CAR_FILTER_CATEGORY, CBox2D.CAR_FILTER_MASK );
 			_speed = $carData.speed;
 			_damping = $carData.damping;
 			_rotationSpeed = $carData.rotation;

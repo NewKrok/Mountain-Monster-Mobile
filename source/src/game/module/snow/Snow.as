@@ -3,9 +3,9 @@
  */
 package src.game.module.snow
 {
-	import starling.display.Sprite;
+	import net.fpp.starling.module.AModule;
 
-	public class Snow extends Sprite
+	public class Snow extends AModule
 	{
 		private const NUMBER_OF_SNOWFLAKE:uint = 100;
 

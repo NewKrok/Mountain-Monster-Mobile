@@ -13,7 +13,7 @@
 
 	import src.assets.TerrainTextures;
 
-	import src.constant.CLeaderBoards;
+	import src.constant.CLeaderBoard;
 
 	import src.data.DataManager;
 
@@ -284,7 +284,7 @@
 		{
 			CONFIG::IS_MOBILE_VERSION
 			{
-				gcManager.showLeaderboard( CLeaderBoards.LEADERBOARD_NAME, SDLeaderboard.TIME_SCOPE_TODAY );
+				gcManager.showLeaderboard( CLeaderBoard.LEADERBOARD_NAME, SDLeaderboard.TIME_SCOPE_TODAY );
 			}
 		}
 

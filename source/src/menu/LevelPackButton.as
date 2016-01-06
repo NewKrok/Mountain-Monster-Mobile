@@ -7,7 +7,7 @@ package src.menu
 
 	import net.fpp.starling.StaticAssetManager;
 
-	import src.constant.CPurchaseItems;
+	import src.constant.CPurchaseItem;
 
 	import src.data.DataManager;
 	import src.menu.events.MenuEvent;
@@ -101,11 +101,11 @@ package src.menu
 					{
 						if ( _worldID == 1 )
 						{
-							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_LEVEL_PACK_1 );
+							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_1 );
 						}
 						else if ( _worldID == 2 )
 						{
-							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItems.PURCHASE_ITEM_LEVEL_PACK_2 );
+							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_2 );
 						}
 					}
 					else

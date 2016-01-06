@@ -3,7 +3,7 @@
  */
 package src.constant
 {
-	public class CLibraryElements
+	public class CLibraryElement
 	{
 		public static var CRATE_0:String = 'crate_0';
 		public static var CRATE_1:String = 'crate_1';

@@ -25,7 +25,7 @@ package src.data
 
 			_savedLevelDatas = new SavedLevelDatas( namespace );
 
-			_savedCommonDatas = SharedObject.getLocal( namespace + '_FPP_COMMON_DATA' );
+			_savedCommonDatas = SharedObject.getLocal( namespace + '_FPP_COMMON_DATA_' );
 
 			if( _savedCommonDatas.data.content == undefined )
 			{

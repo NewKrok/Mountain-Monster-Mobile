@@ -3,15 +3,16 @@
  */
 package src.menu.module.rating
 {
+	import net.fpp.starling.module.AModule;
+
 	import src.data.DataManager;
 	import src.events.BaseModuleEvent;
 	import src.menu.module.rating.events.RatingModuleEvent;
 	import src.menu.module.rating.view.RatingView;
 
-	import starling.display.Sprite;
 	import starling.events.Event;
 
-	public class RatingModule extends Sprite
+	public class RatingModule extends AModule
 	{
 		private var _ratingView:RatingView;
 

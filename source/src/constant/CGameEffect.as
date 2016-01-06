@@ -1,4 +1,4 @@
-package src.game.constant
+package src.constant
 {
 	public class CGameEffect
 	{
