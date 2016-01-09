@@ -8,16 +8,16 @@ package src.menu.module.menubackground.view
 	import flash.geom.Point;
 
 	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.starling.module.AView;
 
 	import src.menu.module.menubackground.constant.CBackgroundView;
 
 	import starling.display.Image;
 
 	import starling.display.Sprite;
-	import starling.events.Event;
 	import starling.textures.Texture;
 
-	public class MenuBackgroundView extends Sprite
+	public class MenuBackgroundView extends AView
 	{
 		private var _container:Sprite;
 		private var _backContainer:Sprite;
@@ -27,13 +27,10 @@ package src.menu.module.menubackground.view
 
 		public function MenuBackgroundView()
 		{
-			this.addEventListener( Event.ADDED_TO_STAGE, this.init );
 		}
 
-		private function init( e:Event ):void
+		override protected function onInit():void
 		{
-			this.removeEventListener( Event.ADDED_TO_STAGE, this.init );
-
 			this._container = new Sprite();
 			this.addChild( this._container );
 		}

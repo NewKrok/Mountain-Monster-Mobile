@@ -17,8 +17,6 @@ package src.menu.module.menubackground
 
 	public class MenuBackgroundModule extends AModule
 	{
-		private var _view:MenuBackgroundView;
-
 		CONFIG::IS_MOBILE_VERSION
 		{
 			private var _accelerometer:Accelerometer;
@@ -29,7 +27,6 @@ package src.menu.module.menubackground
 		public function MenuBackgroundModule()
 		{
 			this._view = new MenuBackgroundView();
-			this.addChild( this._view );
 
 			CONFIG::IS_MOBILE_VERSION
 			{
@@ -39,7 +36,7 @@ package src.menu.module.menubackground
 
 		public function setLevelPackId( id:uint ):void
 		{
-			this._view.setLevelPackId( id );
+			( this._view as MenuBackgroundView ).setLevelPackId( id );
 		}
 
 		CONFIG::IS_MOBILE_VERSION
@@ -85,7 +82,7 @@ package src.menu.module.menubackground
 
 		private function updateView():void
 		{
-			this._view.update( this._offsetPercent );
+			( this._view as MenuBackgroundView ).update( this._offsetPercent );
 		}
 
 		CONFIG::IS_MOBILE_VERSION

@@ -1,22 +1,10 @@
 package src.game.module.help
 {
-	import net.fpp.starling.StaticAssetManager;
 	import net.fpp.starling.module.AModule;
 
-	import rv2.sound.SoundHandler;
+	import src.game.module.help.events.HelpModuleEvent;
 
-	import src.assets.Fonts;
-	import src.data.DataManager;
-
-	import starling.display.Button;
-
-	import starling.display.Image;
-	import starling.display.Quad;
-	import starling.display.Sprite;
-	import starling.events.Event;
-	import starling.text.TextField;
-	import starling.utils.HAlign;
-	import starling.utils.VAlign;
+	import src.game.module.help.view.HelpModuleView;
 
 	public class HelpModule extends AModule
 	{
@@ -42,156 +30,27 @@ package src.game.module.help
 
 		private var _onComplete:Function;
 
-		private var _back:Quad;
-
-		private var _content:Sprite;
-		private var _contentBack:Image;
-		private var _contentIcon:Image;
-		private var _contentText:TextField;
-
-		private var _nextButton:Button;
-		private var _backButton:Button;
-
-		private var _worldId:int = 0;
-
-		private var _currentIndex:uint;
-
 		public function HelpModule( worldId:int, onComplete:Function ):void
 		{
-			_worldId = worldId;
-			_onComplete = onComplete;
-			addEventListener( Event.ADDED_TO_STAGE, build );
+			this._view = new HelpModuleView();
+			this._view.addEventListener( HelpModuleEvent.CLOSE_REQUEST, this.onCloseRequest );
+
+			( this._view as HelpModuleView ).setHelpText( this.HELP_TEXTS[ worldId ] );
+			( this._view as HelpModuleView ).setWorldId( worldId );
+
+			this._onComplete = onComplete;
 		}
 
-		public function build():void
+		private function onCloseRequest( e:HelpModuleEvent ):void
 		{
-			removeEventListener( Event.ADDED_TO_STAGE, build );
-
-			this._back = new Quad( stage.stageWidth, stage.stageHeight, 0x000000, true );
-			this._back.width = this.stage.stageWidth;
-			this._back.height = this.stage.stageHeight;
-			this._back.alpha = .8;
-			this.addChild( this._back );
-
-			addChild( _content = new Sprite );
-			_content.addChild( _contentBack = new Image( StaticAssetManager.instance.getTexture( "help_back" ) ) );
-
-			_content.addChild( _contentText = new TextField( 233, 100, HELP_TEXTS[ _worldId ][ _currentIndex ] ) );
-			_contentText.touchable = false;
-			_contentText.fontSize = 15;
-			_contentText.color = 0xFFFFFF;
-			_contentText.fontName = Fonts.getAachenLightFont().name;
-			_contentText.hAlign = HAlign.CENTER;
-			_contentText.vAlign = VAlign.CENTER;
-			_contentText.x = 122;
-			_contentText.y = 5.5;
-
-			_content.addChild( _nextButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), "NEXT" ) );
-			_nextButton.fontSize = 18;
-			_nextButton.fontColor = 0xFFFFFF;
-			_nextButton.fontName = Fonts.getAachenLightFont ().name;
-			_nextButton.name = "next";
-			_nextButton.x = _content.width / 2 + 5;
-			_nextButton.y = _contentBack.height + 10;
-			_nextButton.addEventListener( Event.TRIGGERED, onButtonTriggered );
-
-			_content.addChild( _backButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), "BACK" ) );
-			_backButton.fontSize = 18;
-			_backButton.fontColor = 0xFFFFFF;
-			_backButton.fontName = Fonts.getAachenLightFont ().name;
-			_backButton.name = "back";
-			_backButton.x = _content.width / 2 - _nextButton.width - 5;
-			_backButton.y = _contentBack.height + 10;
-			_backButton.addEventListener( Event.TRIGGERED, onButtonTriggered );
-
-			_content.x = _back.width / 2 - _content.width / 2;
-			_content.y = stage.stageHeight / 2 - _content.height / 2;
-
-			updateButtonView();
-			updateIcon();
-		}
-
-		private function onButtonTriggered( event:Event ):void
-		{
-			SoundHandler.play( 'SND_BUTTON' );
-
-			if( Button( event.currentTarget ).name == "next" )
-			{
-				_currentIndex++;
-				if( _currentIndex == HELP_TEXTS[ _worldId ].length )
-				{
-					var helpDatas:Array = DataManager.getHelpDatas();
-					helpDatas[_worldId] = true;
-					DataManager.setHelpDatas( helpDatas );
-					DataManager.save();
-
-					_onComplete.call( this, event );
-					return;
-				}
-				else
-				{
-					_contentText.text = HELP_TEXTS[ _worldId ][ _currentIndex ];
-				}
-			}
-			else
-			{
-				_currentIndex--;
-				_contentText.text = HELP_TEXTS[ _worldId ][ _currentIndex ];
-			}
-
-			updateButtonView();
-			updateIcon();
-		}
-
-		private function updateIcon():void
-		{
-			if( _contentIcon )
-			{
-				removeChild( _contentIcon, true );
-				_contentIcon = null;
-			}
-
-			_content.addChild( _contentIcon = new Image( StaticAssetManager.instance.getTexture( "help_icon_" + _worldId + "_" + _currentIndex ) ) );
-			_contentIcon.x = 3;
-			_contentIcon.y = 3;
-		}
-
-		private function updateButtonView():void
-		{
-			_backButton.enabled = _currentIndex != 0;
-
-			if( _currentIndex == HELP_TEXTS[ _worldId ].length - 1 )
-			{
-				_nextButton.text = "CLOSE";
-			}
-			else
-			{
-				_nextButton.text = "NEXT";
-			}
+			this._onComplete.call( this, e );
 		}
 
 		override public function dispose():void
 		{
-			removeChild( _back, true );
-			_back = null;
+			this._view.removeEventListener( HelpModuleEvent.CLOSE_REQUEST, this.onCloseRequest );
 
-			_content.removeChild( _contentBack, true );
-			_contentBack = null;
-
-			_content.removeChild( _contentIcon, true );
-			_contentIcon = null;
-
-			_content.removeChild( _contentText, true );
-			_contentText = null;
-
-			_content.removeChild( _nextButton, true );
-			_nextButton = null;
-
-			_content.removeChild( _backButton, true );
-			_backButton = null;
-
-			removeChild( _content, true );
-			_content = null;
+			this._onComplete = null;
 
 			super.dispose();
 		}

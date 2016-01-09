@@ -17,7 +17,7 @@
 	import src.constant.CStarRequired;
 	import src.data.DataManager;
 	import src.menu.events.MenuEvent;
-	import src.menu.module.carselect.carselectbutton.CarSelectButton;
+	import src.menu.module.carselect.view.CarSelectButton;
 
 	import starling.core.Starling;
 	import starling.display.Button;

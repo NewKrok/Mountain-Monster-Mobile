@@ -20,8 +20,8 @@ package src.menu
 	import src.data.DataManager;
 	import src.data.LevelResultVO;
 	import src.menu.events.MenuEvent;
+	import src.menu.module.carselect.view.CarSelectButton;
 	import src.utils.Pager;
-	import src.menu.module.carselect.carselectbutton.CarSelectButton;
 
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -29,7 +29,6 @@ package src.menu
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.textures.Texture;
-	import starling.utils.AssetManager;
 
 	import src.AbstractPanel;
 

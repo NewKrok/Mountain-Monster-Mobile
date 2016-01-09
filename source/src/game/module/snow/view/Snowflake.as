@@ -1,4 +1,4 @@
-﻿package src.game.module.snow
+﻿package src.game.module.snow.view
 {
 	import flash.geom.Point;
 

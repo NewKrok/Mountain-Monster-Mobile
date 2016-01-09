@@ -1,7 +1,7 @@
 /**
  * Created by newkrok on 29/10/15.
  */
-package src.menu.module.carselect.carselectpanel.events
+package src.menu.module.carselect.events
 {
 	import starling.events.Event;
 

@@ -6,7 +6,6 @@ package src.menu.module.rating
 	import net.fpp.starling.module.AModule;
 
 	import src.data.DataManager;
-	import src.events.BaseModuleEvent;
 	import src.menu.module.rating.events.RatingModuleEvent;
 	import src.menu.module.rating.view.RatingView;
 
@@ -29,7 +28,6 @@ package src.menu.module.rating
 			this._ratingView.addEventListener( RatingModuleEvent.RATE_REQUEST, this.handleRateRequest );
 			this._ratingView.addEventListener( RatingModuleEvent.RATE_LATER_REQUEST, this.handleRateLaterRequest );
 			this._ratingView.addEventListener( RatingModuleEvent.RATE_NEVER_REQUEST, this.handleRateNeverRequest );
-			this.addChild( this._ratingView );
 		}
 
 		private function clearModule():void
@@ -40,7 +38,7 @@ package src.menu.module.rating
 				this._ratingView.removeEventListener( RatingModuleEvent.RATE_LATER_REQUEST, this.handleRateLaterRequest );
 				this._ratingView.removeEventListener( RatingModuleEvent.RATE_NEVER_REQUEST, this.handleRateNeverRequest );
 
-				this.removeChild( this._ratingView );
+				this._ratingView.removeFromParent( true );
 				this._ratingView = null;
 			}
 		}
@@ -66,11 +64,11 @@ package src.menu.module.rating
 			this.disposeRequest();
 		}
 
-		private function disposeRequest():void
+		override protected function disposeRequest():void
 		{
 			this.clearModule();
 
-			this.dispatchEvent( new BaseModuleEvent( BaseModuleEvent.DISPOSE_REQUEST ) );
+			super.disposeRequest();
 		}
 
 		override public function dispose():void
