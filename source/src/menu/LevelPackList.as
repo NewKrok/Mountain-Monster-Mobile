@@ -147,11 +147,11 @@
 
 			if ( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_1 )
 			{
-				unlockLevelPack( 1 );
+				this.unlockLevelPack( 1 );
 			}
 			if ( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_2 )
 			{
-				unlockLevelPack( 2 );
+				this.unlockLevelPack( 2 );
 			}
 		}
 
@@ -179,7 +179,7 @@
 
 		public function unlockLevelPack( index:uint ):void
 		{
-			DataManager.unlockLevelPack( 1 );
+			DataManager.unlockLevelPack( index );
 			_levelPackButtons[ index ].unlock();
 		}
 
@@ -189,7 +189,13 @@
 
 			if( !DataManager.getIsLevelPackUnlocked( levelPackID ) )
 			{
-				StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_1 );
+				if ( levelPackID == 0 )
+				{
+					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_1 );
+				} else if ( levelPackID == 0 )
+				{
+					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_2 );
+				}
 			}
 			else
 			{

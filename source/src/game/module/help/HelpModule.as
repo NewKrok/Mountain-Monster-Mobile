@@ -21,7 +21,7 @@ package src.game.module.help
 				'Be careful in the blizzard!'.toUpperCase(),
 			],
 			new <String> [
-				'Figyelj oda a ladakra, konnyen elmozdulnak ha rajuk hajtasz.'.toUpperCase()
+				'Watch out for the crates, they can be moved easily.'.toUpperCase()
 			],
 			new <String> [
 				'description...'.toUpperCase()

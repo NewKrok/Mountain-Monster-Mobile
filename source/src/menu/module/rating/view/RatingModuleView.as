@@ -17,7 +17,7 @@ package src.menu.module.rating.view
 	import starling.events.Event;
 	import starling.text.TextField;
 
-	public class RatingView extends Sprite
+	public class RatingModuleView extends Sprite
 	{
 		private var _elementContainer:Sprite;
 
@@ -29,7 +29,7 @@ package src.menu.module.rating.view
 		private var _notNowButton:Button;
 		private var _neverButton:Button;
 
-		public function RatingView()
+		public function RatingModuleView()
 		{
 			addEventListener( Event.ADDED_TO_STAGE, onAddedToStageHandler );
 		}

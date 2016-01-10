@@ -7,39 +7,27 @@ package src.menu.module.rating
 
 	import src.data.DataManager;
 	import src.menu.module.rating.events.RatingModuleEvent;
-	import src.menu.module.rating.view.RatingView;
-
-	import starling.events.Event;
+	import src.menu.module.rating.view.RatingModuleView;
 
 	public class RatingModule extends AModule
 	{
-		private var _ratingView:RatingView;
+		private var _ratingView:RatingModuleView;
 
 		public function RatingModule()
 		{
-			this.addEventListener( Event.ADDED_TO_STAGE, onAddedToStage );
-		}
-
-		private function onAddedToStage():void
-		{
-			this.removeEventListener( Event.ADDED_TO_STAGE, onAddedToStage );
-
-			this._ratingView = new RatingView();
-			this._ratingView.addEventListener( RatingModuleEvent.RATE_REQUEST, this.handleRateRequest );
-			this._ratingView.addEventListener( RatingModuleEvent.RATE_LATER_REQUEST, this.handleRateLaterRequest );
-			this._ratingView.addEventListener( RatingModuleEvent.RATE_NEVER_REQUEST, this.handleRateNeverRequest );
+			this._view = new RatingModuleView();
+			this._view.addEventListener( RatingModuleEvent.RATE_REQUEST, this.handleRateRequest );
+			this._view.addEventListener( RatingModuleEvent.RATE_LATER_REQUEST, this.handleRateLaterRequest );
+			this._view.addEventListener( RatingModuleEvent.RATE_NEVER_REQUEST, this.handleRateNeverRequest );
 		}
 
 		private function clearModule():void
 		{
-			if( this._ratingView )
+			if( this._view )
 			{
-				this._ratingView.removeEventListener( RatingModuleEvent.RATE_REQUEST, this.handleRateRequest );
-				this._ratingView.removeEventListener( RatingModuleEvent.RATE_LATER_REQUEST, this.handleRateLaterRequest );
-				this._ratingView.removeEventListener( RatingModuleEvent.RATE_NEVER_REQUEST, this.handleRateNeverRequest );
-
-				this._ratingView.removeFromParent( true );
-				this._ratingView = null;
+				this._view.removeEventListener( RatingModuleEvent.RATE_REQUEST, this.handleRateRequest );
+				this._view.removeEventListener( RatingModuleEvent.RATE_LATER_REQUEST, this.handleRateLaterRequest );
+				this._view.removeEventListener( RatingModuleEvent.RATE_NEVER_REQUEST, this.handleRateNeverRequest );
 			}
 		}
 
