@@ -3,6 +3,7 @@ package src.data
 	import flash.net.SharedObject;
 
 	import src.assets.Achievements;
+	import src.data.DataManager;
 
 	public class DataManager
 	{
@@ -38,8 +39,9 @@ package src.data
 				 UNLOCKED_CAR_DATAS
 				 LAST_PLAYED_LEVEL_PACK_ID
 				 LAST_SELECTED_CAR_ID
+				 COMPLETED_TASKS
 				 */
-				_savedCommonDatas.data.content = [ true, [], false, true, [], [], 0, 0 ];
+				_savedCommonDatas.data.content = [ true, [], false, true, [], [], 0, 0, [] ];
 				_savedCommonDatas.flush();
 			}
 
@@ -63,6 +65,11 @@ package src.data
 				_savedCommonDatas.data.content[ 7 ] = 0;
 			}
 
+			if( _savedCommonDatas.data.content[ 8 ] == undefined )
+			{
+				_savedCommonDatas.data.content[ 8 ] = [];
+			}
+
 			_commonDatas = {
 				showHelps: _savedCommonDatas.data.content[ 0 ],
 				helpDatas: _savedCommonDatas.data.content[ 1 ],
@@ -71,11 +78,12 @@ package src.data
 				playedGameCounters: _savedCommonDatas.data.content[ 4 ],
 				unlockedCarDatas: _savedCommonDatas.data.content[ 5 ],
 				lastPlayedLevelPackId: _savedCommonDatas.data.content[ 6 ],
-				lastSelectedCarId: _savedCommonDatas.data.content[ 7 ]
+				lastSelectedCarId: _savedCommonDatas.data.content[ 7 ],
+				completedTasks: _savedCommonDatas.data.content[ 8 ]
 			};
 
-			unlockLevelPack( 0 );
-			unlockCar( 0 );
+			DataManager.unlockLevelPack( 0 );
+			DataManager.unlockCar( 0 );
 		}
 
 		private static function traceAchievementInfoLog():void
@@ -103,7 +111,8 @@ package src.data
 				_commonDatas.playedGameCounters,
 				_commonDatas.unlockedCarDatas,
 				_commonDatas.lastPlayedLevelPackId,
-				_commonDatas.lastSelectedCarId
+				_commonDatas.lastSelectedCarId,
+				_commonDatas.completedTasks
 			];
 			_savedCommonDatas.flush();
 		}
@@ -175,6 +184,21 @@ package src.data
 		public static function setLastSelectedCarId( value:uint ):void
 		{
 			_commonDatas.lastSelectedCarId = value;
+		}
+
+		public static function getCompletedTaskListByWorld( worldID:uint ):Array
+		{
+			if ( _commonDatas.completedTasks[worldID] == undefined )
+			{
+				_commonDatas.completedTasks[worldID] = [];
+			}
+
+			return _commonDatas.completedTasks[worldID];
+		}
+
+		public static function setCompletedTaskListInWorld( worldID:uint, value:Array ):void
+		{
+			_commonDatas[worldID] = value;
 		}
 
 		public static function getLevelData( levelPackID:uint, levelID:uint ):LevelResultVO

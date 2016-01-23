@@ -21,6 +21,7 @@ package src.menu
 	import src.data.LevelResultVO;
 	import src.menu.events.MenuEvent;
 	import src.menu.module.carselect.view.CarSelectButton;
+	import src.menu.module.task.view.TaskButton;
 	import src.utils.Pager;
 
 	import starling.core.Starling;
@@ -54,14 +55,15 @@ package src.menu
 		private var _pagerStart:Image;
 		private var _pagerEnd:Image;
 
-		private var _levelPackID:uint;
+		private var _worldID:uint;
 
 		private var _backButton:Button;
 		private var _removeAdButton:Button;
+		private var _taskButton:TaskButton;
 
-		public function LevelList( levelPackID:uint ):void
+		public function LevelList( worldID:uint ):void
 		{
-			_levelPackID = levelPackID;
+			this._worldID = worldID;
 		}
 
 		override public function init():void
@@ -86,9 +88,9 @@ package src.menu
 			_pages.push( new Sprite );
 			_container.addChild( _pages[ _pages.length - 1 ] );
 
-			for( var i:uint = 0; i < Levels.levels[ _levelPackID ].length; i++ )
+			for( var i:uint = 0; i < Levels.levels[ _worldID ].length; i++ )
 			{
-				_levelButtons.push( _pages[ _pages.length - 1 ].addChild( new LevelButton( _levelPackID, i ) ) as LevelButton );
+				_levelButtons.push( _pages[ _pages.length - 1 ].addChild( new LevelButton( _worldID, i ) ) as LevelButton );
 
 				if( i == 0 )
 				{
@@ -102,7 +104,7 @@ package src.menu
 
 				Tweener.addTween( _levelButtons[ i ], {delay: i * .05, time: .5, alpha: 1} );
 
-				var tmpSavedData:LevelResultVO = DataManager.getLevelData( _levelPackID, i );
+				var tmpSavedData:LevelResultVO = DataManager.getLevelData( _worldID, i );
 				if( tmpSavedData.isLastPlayed )
 				{
 					currentPage = page;
@@ -134,7 +136,7 @@ package src.menu
 
 			addChild( _pager = new Pager );
 			_pager.addEventListener( Event.CHANGE, onPagerAction );
-			if( Levels.levels[ _levelPackID ].length % ( COL_PER_PAGE * ROW_PER_PAGE ) == 0 )
+			if( Levels.levels[ _worldID ].length % ( COL_PER_PAGE * ROW_PER_PAGE ) == 0 )
 			{
 				page--;
 			}
@@ -159,17 +161,11 @@ package src.menu
 				y: Starling.current.stage.stageHeight - 10 - _backButton.height
 			} );
 
+			this.addTaskButton();
+
 			if ( !MountainMonsterIOSMain.AD_BLOCKED )
 			{
-				addChild( _removeAdButton = new Button( StaticAssetManager.instance.getTexture( "remove_ad_button" ) ) );
-				_removeAdButton.name = "remove_ad";
-				_removeAdButton.x = -_removeAdButton.width;
-				_removeAdButton.y = 5;
-				Tweener.addTween( _removeAdButton, {
-					delay: Math.random() * .5,
-					time: .5,
-					x: 5
-				} );
+				this.addRemoveAdButton();
 			}
 
 			this.addChild( this._carSelectButton = new CarSelectButton() );
@@ -188,6 +184,36 @@ package src.menu
 			addStarGuiView();
 
 			resume();
+		}
+
+		private function addTaskButton():void
+		{
+			this.addChild( this._taskButton = new TaskButton( this._worldID ) );
+
+			this._taskButton.name = "task";
+			this._taskButton.x = -this._taskButton.width;
+			this._taskButton.y = 5;
+
+			Tweener.addTween( this._taskButton, {
+				delay: Math.random() * .5,
+				time: .5,
+				x: 5
+			} );
+		}
+
+		private function addRemoveAdButton():void
+		{
+			addChild( _removeAdButton = new Button( StaticAssetManager.instance.getTexture( "remove_ad_button" ) ) );
+
+			_removeAdButton.name = "remove_ad";
+			_removeAdButton.x = -_removeAdButton.width;
+			_removeAdButton.y = this._taskButton.y + this._taskButton.height + 5;
+
+			Tweener.addTween( _removeAdButton, {
+				delay: Math.random() * .5,
+				time: .5,
+				x: 5
+			} );
 		}
 
 		public function hideRemoveADButton():void
@@ -209,7 +235,7 @@ package src.menu
 
 			Tweener.addTween( _starGuiView, {delay: Math.random() * .5, time: .5, alpha: 1} );
 
-			_starGuiView.updateValue( DataManager.getEarnedStarCountByWorld( _levelPackID ) );
+			_starGuiView.updateValue( DataManager.getEarnedStarCountByWorld( _worldID ) );
 		}
 
 		private function onButtonTriggered( e:Event ):void
@@ -222,6 +248,11 @@ package src.menu
 				case 'back':
 					this.dispatchEvent( new MenuEvent( MenuEvent.MAIN_MENU_REQUEST ) );
 					this.pause();
+					break;
+
+				case 'task':
+					this._taskButton.reset();
+					this.dispatchEvent( new MenuEvent( MenuEvent.OPEN_TASKS_REQUEST ) );
 					break;
 
 				case 'remove_ad':
@@ -314,6 +345,12 @@ package src.menu
 				{
 					_removeAdButton.removeFromParent( true );
 					_removeAdButton = null;
+				}
+
+				if ( this._taskButton )
+				{
+					this._taskButton.removeFromParent( true );
+					this._taskButton = null;
 				}
 
 				var length:uint = _levelButtons.length;

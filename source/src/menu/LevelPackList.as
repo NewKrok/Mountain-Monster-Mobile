@@ -90,15 +90,7 @@
 
 			if ( !MountainMonsterIOSMain.AD_BLOCKED )
 			{
-				addChild( _removeAdButton = new Button( StaticAssetManager.instance.getTexture( "remove_ad_button" ) ) );
-				_removeAdButton.name = "remove_ad";
-				_removeAdButton.x = -_removeAdButton.width;
-				_removeAdButton.y = 5;
-				Tweener.addTween( _removeAdButton, {
-					delay: Math.random() * .5,
-					time: .5,
-					x: 5
-				} );
+				this.addRemoveAdButton();
 			}
 
 			this.addChild( this._carSelectButton = new CarSelectButton() );
@@ -115,6 +107,19 @@
 			unlockAvailableLevelPacks();
 
 			resume();
+		}
+
+		private function addRemoveAdButton():void
+		{
+			addChild( _removeAdButton = new Button( StaticAssetManager.instance.getTexture( "remove_ad_button" ) ) );
+			_removeAdButton.name = "remove_ad";
+			_removeAdButton.x = -_removeAdButton.width;
+			_removeAdButton.y = 5;
+			Tweener.addTween( _removeAdButton, {
+				delay: Math.random() * .5,
+				time: .5,
+				x: 5
+			} );
 		}
 
 		public function hideRemoveADButton():void
@@ -256,10 +261,10 @@
 			this._carSelectButton.removeFromParent( true );
 			this._carSelectButton = null;
 
-			if ( _removeAdButton )
+			if ( this._removeAdButton )
 			{
-				_removeAdButton.removeFromParent( true );
-				_removeAdButton = null;
+				this._removeAdButton.removeFromParent( true );
+				this._removeAdButton = null;
 			}
 
 			Tweener.removeTweens( _starGuiView );

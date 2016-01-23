@@ -11,8 +11,6 @@ package src.menu.module.rating
 
 	public class RatingModule extends AModule
 	{
-		private var _ratingView:RatingModuleView;
-
 		public function RatingModule()
 		{
 			this._view = new RatingModuleView();
