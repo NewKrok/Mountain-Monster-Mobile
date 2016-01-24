@@ -4,7 +4,7 @@
 package src.game.module.help.view
 {
 	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AView;
+	import net.fpp.starling.module.AModuleView;
 
 	import rv2.sound.SoundHandler;
 
@@ -23,7 +23,7 @@ package src.game.module.help.view
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
 
-	public class HelpModuleView extends AView
+	public class HelpModuleView extends AModuleView
 	{
 		private var _helpTexts:Vector.<String>;
 

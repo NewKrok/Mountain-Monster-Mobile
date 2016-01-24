@@ -5,11 +5,11 @@ package src.game.module.notification.view
 {
 	import caurina.transitions.Tweener;
 
-	import net.fpp.starling.module.AView;
+	import net.fpp.starling.module.AModuleView;
 
 	import rv2.sound.SoundHandler;
 
-	public class NotificationModuleView extends AView
+	public class NotificationModuleView extends AModuleView
 	{
 		private const MARGIN_LEFT:Number = 10;
 		private const MARGIN_TOP:Number = 45;

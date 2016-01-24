@@ -4,6 +4,7 @@
 package src.menu.module.rating.view
 {
 	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.starling.module.AModuleView;
 
 	import src.assets.Fonts;
 	import src.menu.module.rating.events.RatingModuleEvent;
@@ -17,7 +18,7 @@ package src.menu.module.rating.view
 	import starling.events.Event;
 	import starling.text.TextField;
 
-	public class RatingModuleView extends Sprite
+	public class RatingModuleView extends AModuleView
 	{
 		private var _elementContainer:Sprite;
 
@@ -29,15 +30,8 @@ package src.menu.module.rating.view
 		private var _notNowButton:Button;
 		private var _neverButton:Button;
 
-		public function RatingModuleView()
+		override protected function onInit():void
 		{
-			addEventListener( Event.ADDED_TO_STAGE, onAddedToStageHandler );
-		}
-
-		private function onAddedToStageHandler( e:Event ):void
-		{
-			removeEventListener( Event.ADDED_TO_STAGE, onAddedToStageHandler );
-
 			createElements();
 			setElementContainerPosition();
 		}

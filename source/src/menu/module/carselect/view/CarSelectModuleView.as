@@ -4,7 +4,7 @@
 package src.menu.module.carselect.view
 {
 	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AView;
+	import net.fpp.starling.module.AModuleView;
 	import net.fpp.starling.module.events.ModuleEvent;
 
 	import src.assets.Fonts;
@@ -13,7 +13,7 @@ package src.menu.module.carselect.view
 	import starling.display.Quad;
 	import starling.events.Event;
 
-	public class CarSelectModuleView extends AView
+	public class CarSelectModuleView extends AModuleView
 	{
 		private var _carlist:CarList;
 

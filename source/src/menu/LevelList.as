@@ -252,7 +252,7 @@ package src.menu
 
 				case 'task':
 					this._taskButton.reset();
-					this.dispatchEvent( new MenuEvent( MenuEvent.OPEN_TASKS_REQUEST ) );
+					this.dispatchEvent( new MenuEvent( MenuEvent.OPEN_TASKS_REQUEST, this._worldID ) );
 					break;
 
 				case 'remove_ad':

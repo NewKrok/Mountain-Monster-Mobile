@@ -3,9 +3,9 @@
  */
 package src.game.module.snow.view
 {
-	import net.fpp.starling.module.AView;
+	import net.fpp.starling.module.AModuleView;
 
-	public class SnowModuleView extends AView
+	public class SnowModuleView extends AModuleView
 	{
 		private const NUMBER_OF_SNOWFLAKE:uint = 100;
 

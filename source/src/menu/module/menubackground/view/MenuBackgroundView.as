@@ -8,7 +8,7 @@ package src.menu.module.menubackground.view
 	import flash.geom.Point;
 
 	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AView;
+	import net.fpp.starling.module.AModuleView;
 
 	import src.menu.module.menubackground.constant.CBackgroundView;
 
@@ -17,7 +17,7 @@ package src.menu.module.menubackground.view
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 
-	public class MenuBackgroundView extends AView
+	public class MenuBackgroundView extends AModuleView
 	{
 		private var _container:Sprite;
 		private var _backContainer:Sprite;

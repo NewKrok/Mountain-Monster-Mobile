@@ -110,6 +110,11 @@ package src.common
 			addMissingTasksToWorld( worldID );
 		}
 
+		public static function getTasksByWorldID( worldID:uint ):Vector.<AchievementVO>
+		{
+			return _worldTaskManagers[ worldID ].getAchievementVOs();
+		}
+
 		public static function getCompletedTasksByWorldID( worldID:uint ):uint
 		{
 			return DataManager.getCompletedTaskListByWorld( worldID ).length;
