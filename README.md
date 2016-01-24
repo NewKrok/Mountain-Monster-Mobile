@@ -18,8 +18,14 @@ The source code of the Mountain Monster mobile game.
 
   * **Refactoring** Make modules, and clean the code.
   * **Tasks for the Level packs** Each level pack get tasks, and if you collect all tasks you get a new special car.
-  * **Finish one more level pack** we would like add minimum one more level pack with new cars and levels.
+  * **Finish one more level pack** We would like add minimum one more level pack with new cars and levels.
+  * **Redesign UI** We would like improve some UI elements, example the level pack select
   * **Android version**
+
+## Screenshots:
+![alt tag](https://github.com/NewKrok/Mountain-Monster-Mobile/blob/master/preview/screenshot_1.png)
+![alt tag](https://github.com/NewKrok/Mountain-Monster-Mobile/blob/master/preview/screenshot_2.png)
+![alt tag](https://github.com/NewKrok/Mountain-Monster-Mobile/blob/master/preview/screenshot_3.png)
 
 Our webpage:
 http://flashplusplus.net
