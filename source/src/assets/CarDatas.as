@@ -125,6 +125,19 @@ package src.assets
 					/*DAMPING*/         .5,
 					/*BODY_X_OFFSET*/   0,
 					/*BODY_Y_OFFSET*/   0
+			),
+
+			// TASKS CARS =============================================
+			new CarData(
+					/*ID*/              2000,
+					/*GRAPHIC ID*/      9,
+					/*NAME*/            "???",
+					/*STAR_REQUIRED*/	0,
+					/*SPEED*/           11,
+					/*ROTATION*/        7,
+					/*DAMPING*/         .75,
+					/*BODY_X_OFFSET*/   0,
+					/*BODY_Y_OFFSET*/   -2
 			)
 		];
 

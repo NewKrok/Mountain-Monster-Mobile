@@ -16,6 +16,7 @@ package src.common
 
 		private static var _worldTaskManagers:Vector.<AchievementManager> = new <AchievementManager>[];
 		private static var _taskLists:Vector.<ITaskList> = new <ITaskList>[ new TaskListWorld1, new TaskListWorld1, new TaskListWorld1 ];
+		private static var _rewardsCarID:Vector.<uint> = new <uint>[ 2000, 2001, 2002, 2003 ];
 
 		public static function init():void
 		{
@@ -118,6 +119,11 @@ package src.common
 		public static function getCompletedTasksByWorldID( worldID:uint ):uint
 		{
 			return DataManager.getCompletedTaskListByWorld( worldID ).length;
+		}
+
+		public static function getRewardCarIdByWorld( worldID:uint ):uint
+		{
+			return _rewardsCarID[worldID];
 		}
 
 		public static function hasNonViewedTaskByWorldID( worldID:uint ):Boolean
