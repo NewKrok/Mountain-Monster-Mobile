@@ -126,6 +126,11 @@ package src.common
 			return _rewardsCarID[worldID];
 		}
 
+		public static function getAchievementManagerByWorld( worldID:uint ):AchievementManager
+		{
+			return _worldTaskManagers[ worldID ];
+		}
+
 		public static function hasNonViewedTaskByWorldID( worldID:uint ):Boolean
 		{
 			var achievementList:Vector.<AchievementVO> = _worldTaskManagers[ worldID ].getAchievementVOs();

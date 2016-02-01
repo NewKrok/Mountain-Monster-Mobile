@@ -11,7 +11,7 @@ package src.data
 		private var _score:			int;
 		
 		private var _levelID:		uint;
-		private var _levelPackID:	uint;
+		private var _worldID:	uint;
 		private var _collectedCoin:	uint;
 		private var _starCount:		uint;
 		
@@ -23,7 +23,7 @@ package src.data
 			_gameTime = gameTime;
 			_winState = winState;
 			_levelID = levelID;
-			_levelPackID = levelPackID;
+			_worldID = levelPackID;
 			
 			calculateScore( );
 			calculateStarCount( );
@@ -47,7 +47,7 @@ package src.data
 		{
 			if ( _winState )
 			{
-				_starCount = Levels.levels[_levelPackID][_levelID].scoreToStarCount( _score );
+				_starCount = Levels.levels[_worldID][_levelID].scoreToStarCount( _score );
 			}
 			else
 			{
@@ -70,9 +70,9 @@ package src.data
 			return _levelID;
 		}
 		
-		public function get levelPackID( ):uint
+		public function get worldID( ):uint
 		{
-			return _levelPackID;
+			return _worldID;
 		}
 		
 		public function get starCount( ):uint
