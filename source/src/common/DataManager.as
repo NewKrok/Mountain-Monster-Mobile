@@ -1,9 +1,9 @@
-package src.data
+package src.common
 {
+	import src.data.*;
 	import flash.net.SharedObject;
 
 	import src.assets.Achievements;
-	import src.data.DataManager;
 
 	public class DataManager
 	{
@@ -98,6 +98,7 @@ package src.data
 			saveNormalLevelData();
 			saveCommonData();
 			Achievements.instance.save();
+			TasksManager.save();
 			trace( "Game data saved" );
 		}
 
@@ -329,6 +330,11 @@ package src.data
 		public static function getEarnedStarCountByWorld( worldId:int ):int
 		{
 			return _savedLevelDatas.getEarnedStarCountByWorld( worldId );
+		}
+
+		public static function getTotalCountOf3StarsLevelByWorld( worldId:int ):int
+		{
+			return _savedLevelDatas.getTotalCountOf3StarsLevelByWorld( worldId );
 		}
 
 		public static function getTotalPlayedGameCount():int

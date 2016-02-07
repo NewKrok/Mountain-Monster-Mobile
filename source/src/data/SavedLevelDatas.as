@@ -138,6 +138,22 @@ package src.data
 			return counter;
 		}
 
+		public function getTotalCountOf3StarsLevelByWorld( worldID:int ):int
+		{
+			var counter:int = 0;
+			var length:int = _levelResultVOs.length;
+
+			for( var i:int = 0; i < length; i++ )
+			{
+				if( _levelResultVOs[ i ].levelPackID == worldID && _levelResultVOs[ i ].starCount == 3 )
+				{
+					counter++;
+				}
+			}
+
+			return counter;
+		}
+
 		public function getScoreByWorldID( worldID:uint ):uint
 		{
 			var result:int = 0;

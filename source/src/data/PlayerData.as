@@ -1,5 +1,6 @@
 package src.data
 {
+	import src.common.DataManager;
 	import src.events.PlayerDataEvent;
 
 	import starling.events.EventDispatcher;

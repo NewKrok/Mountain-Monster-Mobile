@@ -5,7 +5,7 @@ package src.menu.module.rating
 {
 	import net.fpp.starling.module.AModule;
 
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.menu.module.rating.events.RatingModuleEvent;
 	import src.menu.module.rating.view.RatingModuleView;
 

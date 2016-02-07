@@ -9,7 +9,7 @@ package src.game.module.help.view
 	import rv2.sound.SoundHandler;
 
 	import src.assets.Fonts;
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.game.module.help.events.HelpModuleEvent;
 
 	import starling.display.Button;

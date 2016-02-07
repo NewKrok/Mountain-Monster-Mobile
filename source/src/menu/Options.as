@@ -10,7 +10,7 @@ package src.menu
 
 	import src.assets.Fonts;
 	import src.constant.CPurchaseItem;
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.menu.events.MenuEvent;
 	import src.utils.ComponentCheckbox;
 

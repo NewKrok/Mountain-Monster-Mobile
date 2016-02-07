@@ -8,6 +8,7 @@ package src.menu.module.task.view
 	import net.fpp.starling.module.events.ModuleEvent;
 
 	import src.assets.Fonts;
+	import src.constant.CTask;
 
 	import starling.display.Button;
 
@@ -54,7 +55,7 @@ package src.menu.module.task.view
 
 		private function createTitle():void
 		{
-			this._title = new TextField( this.width, 25, 'COMPLETED TASKS 20/20' );
+			this._title = new TextField( this.width, 25, 'COMPLETED TASKS ' + CTask.MAXIMUM_TASK_PER_WORLD + '/' + CTask.MAXIMUM_TASK_PER_WORLD );
 
 			this._title.touchable = false;
 			this._title.fontSize = 20;

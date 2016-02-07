@@ -9,7 +9,7 @@ package src.menu
 
 	import src.constant.CPurchaseItem;
 
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.menu.events.MenuEvent;
 
 	import starling.display.Image;

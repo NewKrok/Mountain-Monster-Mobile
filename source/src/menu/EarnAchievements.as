@@ -23,7 +23,7 @@ package src.menu {
 	import starling.text.TextField;
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.assets.Achievements;
 	import src.assets.AchievementInfo;
 	import src.utils.BaseButton;

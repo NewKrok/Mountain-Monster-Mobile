@@ -15,7 +15,7 @@
 
 	import src.constant.CLeaderBoard;
 
-	import src.data.DataManager;
+	import src.common.DataManager;
 
 	CONFIG::IS_IOS_VERSION {
 		import flash.desktop.NativeApplication;

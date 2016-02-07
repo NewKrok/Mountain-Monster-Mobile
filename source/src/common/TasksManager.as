@@ -8,7 +8,7 @@ package src.common
 	import net.fpp.achievement.AchievementManager;
 	import net.fpp.achievement.AchievementVO;
 
-	import src.data.DataManager;
+	import src.common.DataManager;
 
 	public class TasksManager
 	{
@@ -22,7 +22,7 @@ package src.common
 		{
 			for( var i:int = 0; i < 3; i++ )
 			{
-				var achievementManager:AchievementManager = new AchievementManager( MountainMonsterIOSMain.APP_ID + '_world_tasks_' + i );
+				var achievementManager:AchievementManager = new AchievementManager( MountainMonsterIOSMain.APP_ID + '_tasks_world' + i );
 				_worldTaskManagers.push( achievementManager );
 
 				addMissingTasksToWorld( i );
@@ -111,6 +111,19 @@ package src.common
 			addMissingTasksToWorld( worldID );
 		}
 
+		public static function removeTaskByTaskAndWorldID( taskID:uint, worldID:uint ):void
+		{
+			var completedTaskList:Array = DataManager.getCompletedTaskListByWorld( worldID );
+			completedTaskList.push( taskID );
+			DataManager.setCompletedTaskListInWorld( worldID, completedTaskList );
+
+			_worldTaskManagers[ worldID ].unregisterAchievement( taskID );
+
+			DataManager.saveCommonData();
+
+			addMissingTasksToWorld( worldID );
+		}
+
 		public static function getTasksByWorldID( worldID:uint ):Vector.<AchievementVO>
 		{
 			return _worldTaskManagers[ worldID ].getAchievementVOs();
@@ -144,6 +157,14 @@ package src.common
 			}
 
 			return false;
+		}
+
+		public static function save():void
+		{
+			for( var i:int = 0; i < _worldTaskManagers.length; i++ )
+			{
+				_worldTaskManagers[i].save();
+			}
 		}
 	}
 }

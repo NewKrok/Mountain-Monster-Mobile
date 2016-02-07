@@ -9,7 +9,7 @@ package src.menu
 	import rv2.string.StringConverter;
 	
 	import src.assets.Fonts;
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.data.LevelResultVO;
 	import src.menu.events.MenuEvent;
 	

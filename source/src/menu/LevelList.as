@@ -17,7 +17,7 @@ package src.menu
 	import src.assets.Fonts;
 	import src.assets.Levels;
 	import src.constant.CPurchaseItem;
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.data.LevelResultVO;
 	import src.menu.events.MenuEvent;
 	import src.menu.module.carselect.view.CarSelectButton;
@@ -222,6 +222,11 @@ package src.menu
 			{
 				_removeAdButton.visible = false;
 			}
+		}
+
+		public function onCompletedTaskCountChanged():void
+		{
+			this._taskButton.updateCounter();
 		}
 
 		private function addStarGuiView():void

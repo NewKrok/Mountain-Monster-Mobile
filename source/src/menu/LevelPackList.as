@@ -15,7 +15,7 @@
 	import src.assets.Levels;
 	import src.constant.CPurchaseItem;
 	import src.constant.CStarRequired;
-	import src.data.DataManager;
+	import src.common.DataManager;
 	import src.menu.events.MenuEvent;
 	import src.menu.module.carselect.view.CarSelectButton;
 

@@ -18,8 +18,12 @@ package src.menu.module.task.view
 	{
 		private var _newIcon:Image;
 
+		private var _worldID:uint;
+
 		public function TaskButton( worldID:uint )
 		{
+			this._worldID = worldID;
+
 			super( StaticAssetManager.instance.getTexture( 'task_button' ), '' );
 
 			this.fontSize = 13;
@@ -31,9 +35,9 @@ package src.menu.module.task.view
 			newTextBounds.top = 8;
 			this.textBounds = newTextBounds;
 
-			this.setUnlockedTasks( TasksManager.getCompletedTasksByWorldID( worldID ) );
+			this.updateCounter();
 
-			if ( TasksManager.hasNonViewedTaskByWorldID( worldID ) )
+			if ( TasksManager.hasNonViewedTaskByWorldID( this._worldID ) )
 			{
 				this.showNewIcon();
 			}
@@ -42,6 +46,11 @@ package src.menu.module.task.view
 		public function reset():void
 		{
 			this.disposeNewIcon();
+		}
+
+		public function updateCounter():void
+		{
+			this.setUnlockedTasks( TasksManager.getCompletedTasksByWorldID( this._worldID ) );
 		}
 
 		private function setUnlockedTasks( unlockedTasks:uint ):void

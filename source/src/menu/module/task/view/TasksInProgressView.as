@@ -3,13 +3,16 @@
  */
 package src.menu.module.task.view
 {
+	import src.constant.CTask;
+	import src.display.AnimatedUIBox;
+
 	import net.fpp.achievement.AchievementVO;
 	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.display.UIBox;
 	import net.fpp.starling.module.AView;
 	import net.fpp.starling.module.events.ModuleEvent;
 
 	import src.assets.Fonts;
+	import src.menu.module.task.events.TaskModuleEvent;
 
 	import starling.display.Button;
 	import starling.display.Quad;
@@ -27,42 +30,17 @@ package src.menu.module.task.view
 		private var _title:TextField;
 		private var _subTitle:TextField;
 
-		private var _list:UIBox;
+		private var _list:AnimatedUIBox;
 
 		private var _backButton:Button;
-
-		public function setCompletedTasksCount( count:uint ):void
-		{
-			this._title.text = 'COMPLETED TASKS ' + count + '/20';
-		}
-
-		public function setTasks( tasks:Vector.<AchievementVO> ):void
-		{
-			this._list = new UIBox();
-			this._list.touchable = false;
-			this._list.gap = 5;
-			this.addChild( this._list );
-
-			for( var i:int = 0; i < tasks.length; i++ )
-			{
-				var descriptionText:String = tasks[ i ].description.replace( '$value', tasks[ i ].currentValue ).toUpperCase();
-
-				var taskView:TaskView = new TaskView( descriptionText );
-
-				this._list.addChild( taskView );
-
-				this._taskViews.push( taskView );
-			}
-
-			this._list.x = this.width / 2 - this._list.width / 2;
-			this._list.y = this.height / 2 - this._list.height / 2;
-		}
 
 		override protected function onInit():void
 		{
 			this.createBackground();
 			this.createTitles();
 			this.createBackButton();
+			this.createListContainer();
+			this.createList();
 		}
 
 		private function createTitles():void
@@ -78,7 +56,7 @@ package src.menu.module.task.view
 			this._title.touchable = false;
 			this._title.fontSize = 20;
 			this._title.color = 0xFFFFFF;
-			this._title.fontName = Fonts.getAachenLightFont( ).name;
+			this._title.fontName = Fonts.getAachenLightFont().name;
 			this._title.hAlign = HAlign.CENTER;
 			this._title.vAlign = VAlign.CENTER;
 
@@ -93,7 +71,7 @@ package src.menu.module.task.view
 			this._subTitle.touchable = false;
 			this._subTitle.fontSize = 15;
 			this._subTitle.color = 0xFFFFFF;
-			this._subTitle.fontName = Fonts.getAachenLightFont( ).name;
+			this._subTitle.fontName = Fonts.getAachenLightFont().name;
 			this._subTitle.hAlign = HAlign.CENTER;
 			this._subTitle.vAlign = VAlign.TOP;
 
@@ -126,6 +104,95 @@ package src.menu.module.task.view
 		private function backToMapRequest( event:Event ):void
 		{
 			this.dispatchEvent( new ModuleEvent( ModuleEvent.DISPOSE_REQUEST ) );
+		}
+
+		private function createListContainer():void
+		{
+			this._list = new AnimatedUIBox();
+
+			this._list.touchable = false;
+			this._list.gap = 5;
+			this._list.x = this.stage.stageWidth / 2;
+			this._list.y = 69;
+
+			this.addChild( this._list );
+		}
+
+		private function createList():void
+		{
+			for( var i:int = 0; i < 3; i++ )
+			{
+				var taskView:TaskView = new TaskView();
+
+				this._taskViews.push( taskView );
+			}
+		}
+
+		public function setCompletedTasksCount( count:uint ):void
+		{
+			this._title.text = 'COMPLETED TASKS ' + count + '/' + CTask.MAXIMUM_TASK_PER_WORLD;
+		}
+
+		public function setTasks( tasks:Vector.<AchievementVO> ):void
+		{
+			var isCompleteRoutinAlreadyStarted:Boolean = false;
+
+			for( var i:int = 0; i < tasks.length; i++ )
+			{
+				var descriptionText:String = tasks[ i ].description.replace( '$value', tasks[ i ].currentValue ).toUpperCase();
+
+				var taskView:TaskView = this._taskViews[ i ];
+
+				if( !taskView.parent )
+				{
+					this._list.addChild( taskView );
+					taskView.resetPosition();
+				}
+
+				if( tasks[ i ].isEarned )
+				{
+					taskView.addEventListener( TaskModuleEvent.REMOVE_TASK_REQUEST, onRemoveTaskRequest );
+					taskView.setToCompleted();
+
+					if( !isCompleteRoutinAlreadyStarted )
+					{
+						isCompleteRoutinAlreadyStarted = true;
+						taskView.startUnlockRoutine();
+					}
+				}
+				else
+				{
+					taskView.setToLocked();
+				}
+
+				taskView.setDescriptionText( descriptionText );
+				taskView.setTaskID( tasks[ i ].id );
+			}
+		}
+
+		private function onRemoveTaskRequest( e:TaskModuleEvent ):void
+		{
+			e.currentTarget.removeEventListener( TaskModuleEvent.REMOVE_TASK_REQUEST, onRemoveTaskRequest );
+
+			this.orderTaskViews();
+
+			this.dispatchEvent( e );
+		}
+
+		private function orderTaskViews():void
+		{
+			for ( var i:int = 0; i < this._taskViews.length; i++ )
+			{
+				if ( !this._taskViews[i].parent )
+				{
+					var taskView:TaskView = this._taskViews[i];
+
+					this._taskViews.splice( i, 1 );
+					this._taskViews.push( taskView );
+
+					break;
+				}
+			}
 		}
 
 		override public function dispose():void
