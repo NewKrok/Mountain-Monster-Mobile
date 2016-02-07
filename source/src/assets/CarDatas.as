@@ -130,12 +130,12 @@ package src.assets
 			// TASKS CARS =============================================
 			new CarData(
 					/*ID*/              2000,
-					/*GRAPHIC ID*/      9,
-					/*NAME*/            "???",
+					/*GRAPHIC ID*/      10,
+					/*NAME*/            "DAWN",
 					/*STAR_REQUIRED*/	0,
-					/*SPEED*/           11,
+					/*SPEED*/           12,
 					/*ROTATION*/        7,
-					/*DAMPING*/         .75,
+					/*DAMPING*/         .6,
 					/*BODY_X_OFFSET*/   0,
 					/*BODY_Y_OFFSET*/   -2
 			)

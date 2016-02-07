@@ -67,8 +67,8 @@
 	{
 
 		public static var LOG_ENABLED:Boolean = false;
-		public static var IS_ALL_LEVEL_ENABLED:Boolean = false;
-		public static var IS_ALL_CAR_ENABLED:Boolean = false;
+		public static var IS_ALL_LEVEL_ENABLED:Boolean = true;
+		public static var IS_ALL_CAR_ENABLED:Boolean = true;
 
 		public static var IS_IOS:Boolean = false;
 		public static var AD_BLOCKED:Boolean = false;
