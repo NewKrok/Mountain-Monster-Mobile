@@ -133,11 +133,22 @@ package src.assets
 					/*GRAPHIC ID*/      10,
 					/*NAME*/            "DAWN",
 					/*STAR_REQUIRED*/	0,
-					/*SPEED*/           12,
+					/*SPEED*/           11,
 					/*ROTATION*/        7,
-					/*DAMPING*/         .6,
+					/*DAMPING*/         .75,
 					/*BODY_X_OFFSET*/   0,
 					/*BODY_Y_OFFSET*/   -2
+			),
+			new CarData(
+					/*ID*/              2001,
+					/*GRAPHIC ID*/      11,
+					/*NAME*/            "Drift",
+					/*STAR_REQUIRED*/	0,
+					/*SPEED*/           12,
+					/*ROTATION*/        7.5,
+					/*DAMPING*/         .65,
+					/*BODY_X_OFFSET*/   -2,
+					/*BODY_Y_OFFSET*/   -4
 			)
 		];
 
