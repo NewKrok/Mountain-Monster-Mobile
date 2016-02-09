@@ -27,17 +27,22 @@ package src.game
 		public var leftWheelOnAir:Boolean = false;
 		public var rightWheelOnAir:Boolean = false;
 
-		public function ExtendedCar( $world:b2World, $positionX:Number, $positionY:Number, $carData:CarData )
+		public var _carData:CarData;
+
+		public function ExtendedCar( $world:b2World, $positionX:Number, $positionY:Number, carData:CarData )
 		{
 			super( $world, $positionX, $positionY, false, CBox2D.CAR_FILTER_CATEGORY, CBox2D.CAR_FILTER_MASK );
-			_speed = $carData.speed;
-			_damping = $carData.damping;
-			_rotationSpeed = $carData.rotation;
+
+			this._carData = carData;
+
+			_speed = carData.speed;
+			_damping = carData.damping;
+			_rotationSpeed = carData.rotation;
 			overrideParams( {
-				firstWheelXOffsetFromLT: 59 + $carData.carBodyXOffset,
-				firstWheelYOffsetFromLT: 23 + $carData.carBodyYOffset,
-				backWheelXOffsetFromLT: 2 + $carData.carBodyXOffset,
-				backWheelYOffsetFromLT: 23 + $carData.carBodyYOffset,
+				firstWheelXOffsetFromLT: 59 + carData.carBodyXOffset,
+				firstWheelYOffsetFromLT: 23 + carData.carBodyYOffset,
+				backWheelXOffsetFromLT: 2 + carData.carBodyXOffset,
+				backWheelYOffsetFromLT: 23 + carData.carBodyYOffset,
 				firstWheelRadius: 10,
 				backWheelRadius: 10,
 				bodyWidth: 60,
@@ -92,6 +97,16 @@ package src.game
 		public function get damping():Number
 		{
 			return _damping;
+		}
+
+		public function getGraphicXOffset():Number
+		{
+			return this._carData.carBodyGraphicXOffset;
+		}
+
+		public function getGraphicYOffset():Number
+		{
+			return this._carData.carBodyGraphicYOffset;
 		}
 	}
 }

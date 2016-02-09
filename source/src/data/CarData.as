@@ -8,12 +8,14 @@ package src.data
 		private var _damping:Number;
 		private var _carBodyXOffset:Number;
 		private var _carBodyYOffset:Number;
+		private var _carBodyGraphicXOffset:Number;
+		private var _carBodyGraphicYOffset:Number;
 
 		private var _id:int;
 		private var _graphicID:uint;
 		private var _starRequired:uint;
 
-		public function CarData( id:uint, graphicID:uint, name:String, starRequired:uint, speed:Number, rotation:Number, damping:Number, carBodyXOffset:Number, carBodyYOffset:Number ):void
+		public function CarData( id:uint, graphicID:uint, name:String, starRequired:uint, speed:Number, rotation:Number, damping:Number, carBodyXOffset:Number, carBodyYOffset:Number, carBodyGraphicXOffset:Number = 0, carBodyGraphicYOffset:Number = 0 ):void
 		{
 			this._id = id;
 			this._graphicID = graphicID;
@@ -24,6 +26,8 @@ package src.data
 			this._damping = damping;
 			this._carBodyXOffset = carBodyXOffset;
 			this._carBodyYOffset = carBodyYOffset;
+			this._carBodyGraphicXOffset = carBodyGraphicXOffset;
+			this._carBodyGraphicYOffset = carBodyGraphicYOffset;
 		}
 
 		public function get name():String
@@ -54,6 +58,16 @@ package src.data
 		public function get carBodyYOffset():Number
 		{
 			return this._carBodyYOffset;
+		}
+
+		public function get carBodyGraphicXOffset():Number
+		{
+			return this._carBodyGraphicXOffset;
+		}
+
+		public function get carBodyGraphicYOffset():Number
+		{
+			return this._carBodyGraphicYOffset;
 		}
 
 		public function get id():uint

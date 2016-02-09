@@ -149,6 +149,19 @@ package src.assets
 					/*DAMPING*/         .65,
 					/*BODY_X_OFFSET*/   -2,
 					/*BODY_Y_OFFSET*/   -4
+			),
+			new CarData(
+					/*ID*/              2002,
+					/*GRAPHIC ID*/      12,
+					/*NAME*/            "Desert Rock",
+					/*STAR_REQUIRED*/	0,
+					/*SPEED*/           13,
+					/*ROTATION*/        7,
+					/*DAMPING*/         .6,
+					/*BODY_X_OFFSET*/   -2,
+					/*BODY_Y_OFFSET*/   -4,
+					/*BODY_G_X_OFFSET*/ -2.5,
+					/*BODY_G_Y_OFFSET*/ 0
 			)
 		];
 
