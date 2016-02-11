@@ -15,7 +15,9 @@ package src.data
 		private var _graphicID:uint;
 		private var _starRequired:uint;
 
-		public function CarData( id:uint, graphicID:uint, name:String, starRequired:uint, speed:Number, rotation:Number, damping:Number, carBodyXOffset:Number, carBodyYOffset:Number, carBodyGraphicXOffset:Number = 0, carBodyGraphicYOffset:Number = 0 ):void
+		private var _unlockInformation:String;
+
+		public function CarData( id:uint, graphicID:uint, name:String, starRequired:uint, speed:Number, rotation:Number, damping:Number, carBodyXOffset:Number, carBodyYOffset:Number, carBodyGraphicXOffset:Number = 0, carBodyGraphicYOffset:Number = 0, unlockInformation:String = '' ):void
 		{
 			this._id = id;
 			this._graphicID = graphicID;
@@ -28,6 +30,7 @@ package src.data
 			this._carBodyYOffset = carBodyYOffset;
 			this._carBodyGraphicXOffset = carBodyGraphicXOffset;
 			this._carBodyGraphicYOffset = carBodyGraphicYOffset;
+			this._unlockInformation = unlockInformation;
 		}
 
 		public function get name():String
@@ -83,6 +86,11 @@ package src.data
 		public function get starRequired():uint
 		{
 			return this._starRequired;
+		}
+
+		public function get unlockInformation():String
+		{
+			return this._unlockInformation;
 		}
 	}
 }

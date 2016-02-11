@@ -1,6 +1,7 @@
 package src.assets
 {
 	import src.constant.CStarRequired;
+	import src.constant.CWorldNames;
 	import src.data.CarData;
 
 	public class CarDatas
@@ -137,7 +138,10 @@ package src.assets
 					/*ROTATION*/        7,
 					/*DAMPING*/         .75,
 					/*BODY_X_OFFSET*/   0,
-					/*BODY_Y_OFFSET*/   -2
+					/*BODY_Y_OFFSET*/   -2,
+					/*BODY_G_X_OFFSET*/ 0,
+					/*BODY_G_Y_OFFSET*/ 0,
+					/*UNLOCK_INFORMATION*/	CWorldNames.SHARP_MOUNTAIN.toUpperCase() + ' TASKS'
 			),
 			new CarData(
 					/*ID*/              2001,
@@ -148,7 +152,10 @@ package src.assets
 					/*ROTATION*/        7.5,
 					/*DAMPING*/         .65,
 					/*BODY_X_OFFSET*/   -2,
-					/*BODY_Y_OFFSET*/   -4
+					/*BODY_Y_OFFSET*/   -4,
+					/*BODY_G_X_OFFSET*/ 0,
+					/*BODY_G_Y_OFFSET*/ 0,
+					/*UNLOCK_INFORMATION*/	CWorldNames.ICE_WORLD.toUpperCase() + ' TASKS'
 			),
 			new CarData(
 					/*ID*/              2002,
@@ -161,7 +168,8 @@ package src.assets
 					/*BODY_X_OFFSET*/   -2,
 					/*BODY_Y_OFFSET*/   -4,
 					/*BODY_G_X_OFFSET*/ -2.5,
-					/*BODY_G_Y_OFFSET*/ 0
+					/*BODY_G_Y_OFFSET*/ 0,
+					/*UNLOCK_INFORMATION*/	CWorldNames.DESERT_VALLEY.toUpperCase() + ' TASKS'
 			)
 		];
 

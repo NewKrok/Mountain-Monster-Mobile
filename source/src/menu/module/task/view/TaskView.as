@@ -59,8 +59,9 @@ package src.menu.module.task.view
 
 		private function onRemovedHandler():void
 		{
-			this.removeFromParent();
 			this.setToLocked();
+			
+			this.removeFromParent();
 
 			this.dispatchEvent( new TaskModuleEvent( TaskModuleEvent.REMOVE_TASK_REQUEST, _taskID ) );
 		}
