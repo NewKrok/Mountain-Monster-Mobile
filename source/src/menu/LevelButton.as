@@ -1,19 +1,17 @@
 package src.menu
 {	
 	import flash.geom.Point;
-	
+
 	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.utils.NumberUtil;
 
 	import rv2.sound.SoundHandler;
 
-	import rv2.string.StringConverter;
-	
 	import src.assets.Fonts;
 	import src.common.DataManager;
 	import src.data.LevelResultVO;
 	import src.menu.events.MenuEvent;
-	
-	import starling.display.Button;
+
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Touch;
@@ -60,7 +58,7 @@ package src.menu
 			_title.x = LevelList.LEVEL_BUTTON_SIZE.x / 2 - _title.width / 2;
 			_title.y = -4;
 			
-			addChild( _score = new TextField( width, 25, StringConverter.numberToFString( levelData.score ) ) );
+			addChild( _score = new TextField( width, 25, NumberUtil.formatNumber( levelData.score ) ) );
 			_score.touchable = false;
 			_score.fontSize = 12;
 			_score.color = 0xFFFF00;
