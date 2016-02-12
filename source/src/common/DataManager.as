@@ -3,8 +3,6 @@ package src.common
 	import src.data.*;
 	import flash.net.SharedObject;
 
-	import src.assets.Achievements;
-
 	public class DataManager
 	{
 		private static var _dirtyLevels:Vector.<Object> = new Vector.<Object>;
@@ -20,10 +18,6 @@ package src.common
 
 		public static function init( namespace:String ):void
 		{
-			Achievements.init( namespace );
-			Achievements.instance.loadInformations();
-			// traceAchievementInfoLog( ); // Trace the saved and the local achievement datas
-
 			_savedLevelDatas = new SavedLevelDatas( namespace );
 
 			_savedCommonDatas = SharedObject.getLocal( namespace + '_FPP_COMMON_DATA_' );
@@ -86,18 +80,11 @@ package src.common
 			DataManager.unlockCar( 0 );
 		}
 
-		private static function traceAchievementInfoLog():void
-		{
-			trace( Achievements.instance.getSavedAchievementInfoLog() );
-			trace( Achievements.instance.getLocalAchievementInfoLog() );
-		}
-
 		public static function save():void
 		{
 			trace( "Save game data..." );
 			saveNormalLevelData();
 			saveCommonData();
-			Achievements.instance.save();
 			TasksManager.save();
 			trace( "Game data saved" );
 		}

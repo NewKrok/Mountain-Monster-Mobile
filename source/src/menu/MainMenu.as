@@ -17,7 +17,6 @@ package src.menu
 	{
 		private var _playGameButton:		Button;
 		private var _toplistButton:			Button;
-		private var _achievementsButton:	Button;
 		private var _facebookButton:		Button;
 		private var _twitterButton:			Button;
 		private var _optionsButton:			Button;
@@ -48,21 +47,11 @@ package src.menu
 			_toplistButton.y = Starling.current.stage.stageHeight;
 			Tweener.addTween( _toplistButton, { delay: baseDelay + Math.random( ) * .5, time: .5, y: Starling.current.stage.stageHeight - _toplistButton.height - margin } );
 			
-			addChild( _achievementsButton = new Button( StaticAssetManager.instance.getTexture( "achievement_button" ) ) );
-			_achievementsButton.name = "achievements";
-			_achievementsButton.x = _toplistButton.x + _toplistButton.width + 10;
-			_achievementsButton.y = Starling.current.stage.stageHeight;
-
-			// TODO: kesobb ezt majd vissza kell kapcsolni, de jelenleg nincsenek achievementek
-			_achievementsButton.visible = false;
-
-			Tweener.addTween( _achievementsButton, { delay: baseDelay + Math.random( ) * .5, time: .5, y: Starling.current.stage.stageHeight - _achievementsButton.height - margin } );
-			
 			addChild( _facebookButton = new Button( StaticAssetManager.instance.getTexture( "facebook_button" ) ) );
 			_facebookButton.name = "facebook";
 			_facebookButton.x = Starling.current.stage.stageWidth;
 			_facebookButton.y = margin;
-			Tweener.addTween( _facebookButton, { delay: baseDelay + Math.random( ) * .5, time: .5, x: Starling.current.stage.stageWidth - _achievementsButton.width - margin } );
+			Tweener.addTween( _facebookButton, { delay: baseDelay + Math.random( ) * .5, time: .5, x: Starling.current.stage.stageWidth - margin } );
 			
 			// Egyenlore a twitter gomb kikapcsolva
 			addChild( _twitterButton = new Button( StaticAssetManager.instance.getTexture( "twitter_button" ) ) );
@@ -154,11 +143,7 @@ package src.menu
 			Tweener.removeTweens( _toplistButton );
 			removeChild( _toplistButton, true );
 			_toplistButton = null;
-			
-			Tweener.removeTweens( _achievementsButton );
-			removeChild( _achievementsButton, true );
-			_achievementsButton = null;
-			
+
 			Tweener.removeTweens( _facebookButton );
 			removeChild( _facebookButton, true );
 			_facebookButton = null;
