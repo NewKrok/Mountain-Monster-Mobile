@@ -17,7 +17,6 @@ The source code of the Mountain Monster mobile game.
 ## Future plans:
 
   * **Refactoring** Make modules, and clean the code.
-  * **Tasks for the Level packs** Each level pack get tasks, and if you collect all tasks you get a new special car.
   * **Finish one more level pack** We would like add minimum one more level pack with new cars and levels.
   * **Redesign UI** We would like improve some UI elements, example the level pack select
   * **Android version**
