@@ -3,6 +3,8 @@
  */
 package src.menu.module.task.view
 {
+	import caurina.transitions.Tweener;
+
 	import net.fpp.starling.StaticAssetManager;
 	import net.fpp.starling.module.AView;
 	import net.fpp.starling.module.events.ModuleEvent;
@@ -32,12 +34,20 @@ package src.menu.module.task.view
 		public function setRewardCarGraphicId( id:uint ):void
 		{
 			this._rewardView = new RewardView();
-			this.addChild( this._rewardView );
 
 			this._rewardView.setCarGraphicId( id );
 
-			this._rewardView.x = this.width / 2 - this._rewardView.width / 2;
-			this._rewardView.y = this.height / 2 - this._rewardView.height / 2;
+			this._rewardView.x = this.width / 2;
+			this._rewardView.y = this.height / 2;
+
+			this._rewardView.scaleX = .2;
+			this._rewardView.scaleY = .2;
+
+			this._rewardView.alpha = 0;
+
+			this.addChild( this._rewardView );
+
+			Tweener.addTween( this._rewardView, { scaleX: 1, scaleY: 1, alpha: 1, time: 1 } );
 		}
 
 		override protected function onInit():void
@@ -124,6 +134,7 @@ package src.menu.module.task.view
 			this._backButton.removeFromParent( true );
 			this._backButton = null;
 
+			Tweener.removeTweens( this._rewardView );
 			this._rewardView.removeFromParent( true );
 			this._rewardView = null;
 

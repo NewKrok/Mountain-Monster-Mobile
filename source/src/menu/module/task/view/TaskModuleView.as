@@ -34,6 +34,11 @@ package src.menu.module.task.view
 		{
 			if( this._taskModel.getCompletedTasksCount() == CTask.MAXIMUM_TASK_PER_WORLD )
 			{
+				if ( this._tasksInProgress )
+				{
+					this.disposeTasksInProgressView();
+				}
+
 				this.setViewToCompleted();
 			}
 			else
@@ -52,7 +57,7 @@ package src.menu.module.task.view
 
 		private function createTasksCompletedView():void
 		{
-			_tasksCompleteView = new TasksCompleteView();
+			this._tasksCompleteView = new TasksCompleteView();
 			this.addChild( this._tasksCompleteView );
 
 			_tasksCompleteView.setRewardCarGraphicId( this._taskModel.getRewardCarGraphicId() );
@@ -99,6 +104,17 @@ package src.menu.module.task.view
 			this.dispatchEvent( e );
 		}
 
+		private function disposeTasksInProgressView():void
+		{
+			if( this._tasksInProgress )
+			{
+				this._tasksInProgress.removeEventListener( ModuleEvent.DISPOSE_REQUEST, backToMapRequest );
+				this._tasksInProgress.removeEventListener( TaskModuleEvent.REMOVE_TASK_REQUEST, onRemoveTaskRequest );
+				this._tasksInProgress.removeFromParent( true );
+				this._tasksInProgress = null;
+			}
+		}
+
 		override public function dispose():void
 		{
 			if( this._tasksCompleteView )
@@ -108,13 +124,7 @@ package src.menu.module.task.view
 				this._tasksCompleteView = null;
 			}
 
-			if( this._tasksInProgress )
-			{
-				this._tasksInProgress.removeEventListener( ModuleEvent.DISPOSE_REQUEST, backToMapRequest );
-				this._tasksInProgress.removeEventListener( TaskModuleEvent.REMOVE_TASK_REQUEST, onRemoveTaskRequest );
-				this._tasksInProgress.removeFromParent( true );
-				this._tasksInProgress = null;
-			}
+			this.disposeTasksInProgressView();
 
 			super.dispose();
 		}

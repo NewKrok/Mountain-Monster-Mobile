@@ -42,6 +42,9 @@ package src.menu.module.task.view
 			this._title.hAlign = HAlign.CENTER;
 			this._title.vAlign = VAlign.CENTER;
 
+			this._title.x = -this._title.width / 2;
+			this._title.y = -40;
+
 			this.addChild( this._title );
 		}
 
@@ -49,13 +52,13 @@ package src.menu.module.task.view
 		{
 			this._back = new Image( StaticAssetManager.instance.getTexture( "reward_back" ) );
 
-			this.addChild( this._back );
+			this.addChildAt( this._back, 0 );
 
 			this._back.pivotX = this._back.width / 2;
 			this._back.pivotY = this._back.height / 2;
 
-			this._back.x = this._title.width / 2;
-			this._back.y = 40;
+			this._back.x = 0;
+			this._back.y = 0;
 		}
 
 		private function startBackgroundAnimation():void
@@ -69,8 +72,8 @@ package src.menu.module.task.view
 
 			this.addChild( this._car );
 
-			this._car.x = this.width / 2 - this._car.width / 2;
-			this._car.y = 20;
+			this._car.x = -this._car.width / 2;
+			this._car.y = -this._car.height / 2;
 		}
 
 		override public function dispose():void

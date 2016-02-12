@@ -137,11 +137,10 @@ package src.menu.module.task.view
 		{
 			var isCompleteRoutinAlreadyStarted:Boolean = false;
 
-			for( var i:int = 0; i < tasks.length; i++ )
+			for( var i:int = 0; i < CTask.MAX_TASK_COUNT_AT_THE_SAME_TIME; i++ )
 			{
-				var descriptionText:String = tasks[ i ].description.replace( '$value', tasks[ i ].currentValue ).toUpperCase();
-
 				var taskView:TaskView = this._taskViews[ i ];
+				var hasNewTask:Boolean = i < tasks.length;
 
 				if( !taskView.parent )
 				{
@@ -149,7 +148,7 @@ package src.menu.module.task.view
 					taskView.resetPosition();
 				}
 
-				if( tasks[ i ].isEarned )
+				if( hasNewTask && tasks[ i ].isEarned )
 				{
 					taskView.addEventListener( TaskModuleEvent.REMOVE_TASK_REQUEST, onRemoveTaskRequest );
 					taskView.setToCompleted();
@@ -165,8 +164,16 @@ package src.menu.module.task.view
 					taskView.setToLocked();
 				}
 
-				taskView.setDescriptionText( descriptionText );
-				taskView.setTaskID( tasks[ i ].id );
+				if ( hasNewTask )
+				{
+					var descriptionText:String = tasks[ i ].description.replace( '$value', tasks[ i ].currentValue ).toUpperCase();
+					taskView.setDescriptionText( descriptionText );
+					taskView.setTaskID( tasks[ i ].id );
+				}
+				else
+				{
+					taskView.visible = false;
+				}
 			}
 		}
 

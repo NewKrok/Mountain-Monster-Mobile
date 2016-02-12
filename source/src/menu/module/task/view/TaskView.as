@@ -25,6 +25,8 @@ package src.menu.module.task.view
 
 		private var _taskID:uint;
 
+		private var _isEarned:Boolean;
+
 		public function TaskView()
 		{
 		}
@@ -48,7 +50,11 @@ package src.menu.module.task.view
 
 		public function setToCompleted():void
 		{
-			this.setBackground( 'task_background_completed' );
+			if ( !this._isEarned )
+			{
+				this._isEarned = true;
+				this.setBackground( 'task_background_completed' );
+			}
 		}
 
 		public function startUnlockRoutine():void
@@ -73,7 +79,11 @@ package src.menu.module.task.view
 				this.removeBackground();
 			}
 
-			this.setBackground( 'task_background' );
+			if ( this._isEarned || !this._back )
+			{
+				this._isEarned = false;
+				this.setBackground( 'task_background' );
+			}
 		}
 
 		private function removeBackground():void

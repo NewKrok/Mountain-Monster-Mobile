@@ -51,7 +51,7 @@ package src.menu
 			_facebookButton.name = "facebook";
 			_facebookButton.x = Starling.current.stage.stageWidth;
 			_facebookButton.y = margin;
-			Tweener.addTween( _facebookButton, { delay: baseDelay + Math.random( ) * .5, time: .5, x: Starling.current.stage.stageWidth - margin } );
+			Tweener.addTween( _facebookButton, { delay: baseDelay + Math.random( ) * .5, time: .5, x: Starling.current.stage.stageWidth - _facebookButton.width - margin } );
 			
 			// Egyenlore a twitter gomb kikapcsolva
 			addChild( _twitterButton = new Button( StaticAssetManager.instance.getTexture( "twitter_button" ) ) );
