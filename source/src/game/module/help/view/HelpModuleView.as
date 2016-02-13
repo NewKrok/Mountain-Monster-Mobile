@@ -43,8 +43,6 @@ package src.game.module.help.view
 		override protected function onInit():void
 		{
 			this._back = new Quad( stage.stageWidth, stage.stageHeight, 0x000000, true );
-			this._back.width = this.stage.stageWidth;
-			this._back.height = this.stage.stageHeight;
 			this._back.alpha = .8;
 			this.addChild( this._back );
 

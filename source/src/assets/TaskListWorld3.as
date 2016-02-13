@@ -27,7 +27,7 @@ package src.assets
 			new AchievementVO( 16, 1, 'Task', 'Do 2 Backflip, 2 Frontflip, 2 Nice Air Time and 2 Nice Wheelie in any level.' ),
 			new AchievementVO( 17, 200, 'Task', 'Pick up $value/200 coins in total.' ),
 			new AchievementVO( 18, 1, 'Task', 'Complete level 24 less than 25 sec.' ),
-			new AchievementVO( 19, 1, 'Task', 'Do 5 Backflip in one level.' )
+			new AchievementVO( 19, 1, 'Task', 'Do 3 Backflip in one level.' )
 		]
 
 		public function getTasks():Vector.<AchievementVO>

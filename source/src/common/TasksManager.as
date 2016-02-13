@@ -25,10 +25,7 @@ package src.common
 
 				addMissingTasksToWorld( i );
 
-				if( achievementManager.getAchievementVOs().length > 0 )
-				{
-					achievementManager.loadInformations();
-				}
+				achievementManager.loadInformations();
 			}
 		}
 
@@ -36,6 +33,11 @@ package src.common
 		{
 			var completedTasks:Array = DataManager.getCompletedTaskListByWorld( worldID );
 			var neededTaskCount:int = CTask.MAX_TASK_COUNT_AT_THE_SAME_TIME - _worldTaskManagers[ worldID ].getAchievementVOs().length;
+
+			if ( completedTasks.length == CTask.MAXIMUM_TASK_PER_WORLD )
+			{
+				return;
+			}
 
 			for( var i:int = 0; i < neededTaskCount; i++ )
 			{
