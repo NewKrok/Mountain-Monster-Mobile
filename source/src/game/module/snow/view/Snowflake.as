@@ -2,10 +2,9 @@
 {
 	import flash.geom.Point;
 
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import starling.display.Image;
-
 	import starling.display.Sprite;
 	import starling.events.Event;
 

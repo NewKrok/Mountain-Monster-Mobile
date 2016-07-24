@@ -5,9 +5,10 @@
 
 	import flash.media.SoundMixer;
 
-	import net.fpp.services.store.StoreManagerMock;
+	import net.fpp.common.services.store.StaticStoreManager;
+	import net.fpp.common.services.store.StoreManagerMock;
 
-	import net.fpp.services.store.StaticStoreManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import rv2.sound.SoundHandler;
 
@@ -37,15 +38,12 @@
 
 	CONFIG::IS_IOS_VERSION {
 		import net.flashplusplus.Snapdragon.GameCenter.SDGameCenterManager;
-		import net.flashplusplus.Snapdragon.GameCenter.events.SDAuthenticationEvent;
 		import net.flashplusplus.Snapdragon.Snapdragon;
 		import net.flashplusplus.Snapdragon.iAdNetwork.events.SDAdEvent;
 		import net.flashplusplus.Snapdragon.iAdNetwork.SDAdManager;
-		import net.flashplusplus.Snapdragon.InAppStore.SDStoreManager;
 		import net.flashplusplus.Snapdragon.SocialCenter.SDSocialManager;
 		import net.flashplusplus.Snapdragon.NotificationCenter.SDNotificationManager;
 		import net.flashplusplus.Snapdragon.NotificationCenter.SDLocalNotification;
-		import net.flashplusplus.Snapdragon.GameCenter.SDAchievement;
 		import net.flashplusplus.Snapdragon.GameCenter.SDLeaderboard;
 
 		import flash.media.AudioPlaybackMode;
@@ -60,14 +58,12 @@
 	import flash.net.navigateToURL;
 	import flash.net.URLRequest;
 
-	import net.fpp.starling.StaticAssetManager;
-
 	[SWF(width="480", height="320", frameRate="60", backgroundColor="#000000")]
 	public class MountainMonsterIOSMain extends Sprite
 	{
 
-		public static var LOG_ENABLED:Boolean = true;
-		public static var IS_ALL_LEVEL_ENABLED:Boolean = true;
+		public static var LOG_ENABLED:Boolean = false;
+		public static var IS_ALL_LEVEL_ENABLED:Boolean = false;
 		public static var IS_ALL_CAR_ENABLED:Boolean = false;
 
 		public static var IS_IOS:Boolean = false;
@@ -171,7 +167,6 @@
 				stageHeight = 320;
 			}
 			Starling.multitouchEnabled = true;
-			Starling.handleLostContext = MAC ? true : !IS_IOS;
 			var viewPort:Rectangle = RectangleUtil.fit(
 					new Rectangle( 0, 0, stageWidth, stageHeight ),
 					new Rectangle( 0, 0, MAC ? stage.stageWidth : stage.fullScreenWidth, MAC ? stage.stageHeight : stage.fullScreenHeight ),
@@ -191,6 +186,7 @@
 			mStarling.stage.stageHeight = stageHeight;
 			mStarling.simulateMultitouch = false;
 			mStarling.enableErrorChecking = false;
+			mStarling.skipUnchangedFrames = true;
 			mStarling.antiAliasing = 3;
 
 			mStarling.addEventListener( starling.events.Event.ROOT_CREATED, function ():void

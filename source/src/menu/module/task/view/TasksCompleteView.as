@@ -5,20 +5,19 @@ package src.menu.module.task.view
 {
 	import caurina.transitions.Tweener;
 
-	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AView;
-	import net.fpp.starling.module.events.ModuleEvent;
+	import net.fpp.common.starling.StaticAssetManager;
+	import net.fpp.common.starling.module.AView;
+	import net.fpp.common.starling.module.events.ModuleEvent;
 
 	import src.assets.Fonts;
 	import src.constant.CTask;
 
 	import starling.display.Button;
-
 	import starling.display.Quad;
 	import starling.events.Event;
 	import starling.text.TextField;
-	import starling.utils.HAlign;
-	import starling.utils.VAlign;
+	import starling.text.TextFormat;
+	import starling.utils.Align;
 
 	public class TasksCompleteView extends AView
 	{
@@ -47,7 +46,7 @@ package src.menu.module.task.view
 
 			this.addChild( this._rewardView );
 
-			Tweener.addTween( this._rewardView, { scaleX: 1, scaleY: 1, alpha: 1, time: 1 } );
+			Tweener.addTween( this._rewardView, {scaleX: 1, scaleY: 1, alpha: 1, time: 1} );
 		}
 
 		override protected function onInit():void
@@ -65,14 +64,15 @@ package src.menu.module.task.view
 
 		private function createTitle():void
 		{
-			this._title = new TextField( this.width, 25, 'COMPLETED TASKS ' + CTask.MAXIMUM_TASK_PER_WORLD + '/' + CTask.MAXIMUM_TASK_PER_WORLD );
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 20;
+			titleTextFormat.color = 0xFFFF00;
+			titleTextFormat.horizontalAlign = Align.CENTER;
+			titleTextFormat.verticalAlign = Align.CENTER;
 
+			this._title = new TextField( this.width, 25, 'COMPLETED TASKS ' + CTask.MAXIMUM_TASK_PER_WORLD + '/' + CTask.MAXIMUM_TASK_PER_WORLD, titleTextFormat );
 			this._title.touchable = false;
-			this._title.fontSize = 20;
-			this._title.color = 0xFFFF00;
-			this._title.fontName = Fonts.getAachenLightFont( ).name;
-			this._title.hAlign = HAlign.CENTER;
-			this._title.vAlign = VAlign.CENTER;
 
 			this._title.y = 10;
 			this.addChild( this._title );
@@ -80,14 +80,15 @@ package src.menu.module.task.view
 
 		private function createSubTitle():void
 		{
-			this._subTitle = new TextField( this.width, 50, 'CONGRATULATIONS! YOU COMPLETED\n ALL TASKS IN THIS LEVEL PACK!' );
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 15;
+			titleTextFormat.color = 0xFFFFFF;
+			titleTextFormat.horizontalAlign = Align.CENTER;
+			titleTextFormat.verticalAlign = Align.TOP;
 
+			this._subTitle = new TextField( this.width, 50, 'CONGRATULATIONS! YOU COMPLETED\n ALL TASKS IN THIS LEVEL PACK!', titleTextFormat );
 			this._subTitle.touchable = false;
-			this._subTitle.fontSize = 15;
-			this._subTitle.color = 0xFFFFFF;
-			this._subTitle.fontName = Fonts.getAachenLightFont( ).name;
-			this._subTitle.hAlign = HAlign.CENTER;
-			this._subTitle.vAlign = VAlign.TOP;
 
 			this._subTitle.y = this._title.y + this._title.height;
 			this.addChild( this._subTitle );
@@ -95,7 +96,7 @@ package src.menu.module.task.view
 
 		private function createBackground():void
 		{
-			this._back = new Quad( this.stage.stageWidth, this.stage.stageHeight, 0x000000, true );
+			this._back = new Quad( this.stage.stageWidth, this.stage.stageHeight, 0x000000 );
 			this._back.width = this.stage.stageWidth;
 			this._back.height = this.stage.stageHeight;
 			this._back.alpha = .8;
@@ -106,9 +107,12 @@ package src.menu.module.task.view
 		{
 			this.addChild( _backButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), 'CLOSE' ) );
 
-			this._backButton.fontName = Fonts.getAachenLightFont().name;
-			this._backButton.fontSize = 18;
-			this._backButton.fontColor = 0xFFFFFF;
+			var buttonTextFormat:TextFormat = new TextFormat();
+			buttonTextFormat.font = Fonts.getAachenLightFont().name;
+			buttonTextFormat.size = 18;
+			buttonTextFormat.color = 0xFFFFFF;
+
+			this._backButton.textFormat = buttonTextFormat;
 			this._backButton.x = this.stage.stageWidth / 2 - this._backButton.width / 2;
 			this._backButton.y = this.stage.stageHeight - this._backButton.height - 10;
 

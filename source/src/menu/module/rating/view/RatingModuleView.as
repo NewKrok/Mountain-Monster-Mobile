@@ -3,8 +3,8 @@
  */
 package src.menu.module.rating.view
 {
-	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AModuleView;
+	import net.fpp.common.starling.StaticAssetManager;
+	import net.fpp.common.starling.module.AModuleView;
 
 	import src.assets.Fonts;
 	import src.menu.module.rating.events.RatingModuleEvent;
@@ -17,6 +17,7 @@ package src.menu.module.rating.view
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.text.TextField;
+	import starling.text.TextFormat;
 
 	public class RatingModuleView extends AModuleView
 	{
@@ -32,17 +33,17 @@ package src.menu.module.rating.view
 
 		override protected function onInit():void
 		{
-			createElements();
-			setElementContainerPosition();
+			this.createElements();
+			this.setElementContainerPosition();
 		}
 
 		private function createElements():void
 		{
-			_darkBackground = new Quad( stage.stageWidth, stage.stageHeight, 0x000000, true );
-			_darkBackground.width = stage.stageWidth;
-			_darkBackground.height = stage.stageHeight;
-			_darkBackground.alpha = .5;
-			addChild( _darkBackground );
+			this._darkBackground = new Quad( this.stage.stageWidth, this.stage.stageHeight, 0x000000 );
+			this._darkBackground.width = this.stage.stageWidth;
+			this._darkBackground.height = this.stage.stageHeight;
+			this._darkBackground.alpha = .5;
+			this.addChild( this._darkBackground );
 
 			_elementContainer = new Sprite();
 			addChild( _elementContainer );
@@ -50,32 +51,36 @@ package src.menu.module.rating.view
 			_background = new Image( StaticAssetManager.instance.getTexture( 'panel_background' ) );
 			_elementContainer.addChild( _background );
 
-			_title = new TextField( _background.width, 50, "DO YOU LIKE THIS GAME?\nDON'T FORGET RATE FOR IT!", Fonts.getAachenLightFont().name, 18, 0xFFFFFF );
-			_title.autoSize = 'center';
-			_title.x = _background.width / 2 - _title.width / 2;
-			_title.y = 10;
-			_elementContainer.addChild( _title );
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 18;
+			titleTextFormat.color = 0xFFFFFF;
+
+			this._title = new TextField( this._background.width, 50, "DO YOU LIKE THIS GAME?\nDON'T FORGET RATE FOR IT!", titleTextFormat );
+			this._title.autoSize = 'center';
+			this._title.x = this._background.width / 2 - this._title.width / 2;
+			this._title.y = 10;
+			this._elementContainer.addChild( this._title );
+
+			var buttonTextFormat:TextFormat = new TextFormat();
+			buttonTextFormat.font = Fonts.getAachenLightFont().name;
+			buttonTextFormat.size = 18;
+			buttonTextFormat.color = 0xFFFFFF;
 
 			_elementContainer.addChild( _rateButton = new Button( StaticAssetManager.instance.getTexture ( "base_button" ), "RATE!" ) );
-			_rateButton.fontSize = 18;
-			_rateButton.fontColor = 0xFFFFFF;
-			_rateButton.fontName = Fonts.getAachenLightFont ().name;
+			_rateButton.textFormat = buttonTextFormat;
 			_rateButton.x = _elementContainer.width / 2 - _rateButton.width / 2;
 			_rateButton.y = 50;
 			_rateButton.addEventListener( Event.TRIGGERED, rateRequest );
 
 			_elementContainer.addChild( _notNowButton = new Button( StaticAssetManager.instance.getTexture ( "base_button" ), "NOT NOW" ) );
-			_notNowButton.fontSize = 18;
-			_notNowButton.fontColor = 0xFFFFFF;
-			_notNowButton.fontName = Fonts.getAachenLightFont ().name;
+			_notNowButton.textFormat = buttonTextFormat;
 			_notNowButton.x = _elementContainer.width / 2 - _rateButton.width / 2;
 			_notNowButton.y = _rateButton.y + _rateButton.height;
 			_notNowButton.addEventListener( Event.TRIGGERED, rateLaterRequest );
 
 			_elementContainer.addChild( _neverButton = new Button( StaticAssetManager.instance.getTexture ( "base_button" ), "NEVER!" ) );
-			_neverButton.fontSize = 18;
-			_neverButton.fontColor = 0xFFFFFF;
-			_neverButton.fontName = Fonts.getAachenLightFont ().name;
+			_neverButton.textFormat = buttonTextFormat;
 			_neverButton.x = _elementContainer.width / 2 - _neverButton.width / 2;
 			_neverButton.y = _notNowButton.y + _notNowButton.height;
 			_neverButton.addEventListener( Event.TRIGGERED, rateNeverRequest );
@@ -104,26 +109,26 @@ package src.menu.module.rating.view
 
 		override public function dispose():void
 		{
-			_elementContainer.removeFromParent( true );
-			_elementContainer = null;
+			this._elementContainer.removeFromParent( true );
+			this._elementContainer = null;
 
-			_darkBackground.removeFromParent( true );
-			_darkBackground = null;
+			this._darkBackground.removeFromParent( true );
+			this._darkBackground = null;
 
-			_background.removeFromParent( true );
-			_background = null;
+			this._background.removeFromParent( true );
+			this._background = null;
 
-			_title.removeFromParent( true );
-			_title = null;
+			this._title.removeFromParent( true );
+			this._title = null;
 
-			_rateButton.removeFromParent( true );
-			_rateButton = null;
+			this._rateButton.removeFromParent( true );
+			this._rateButton = null;
 
-			_notNowButton.removeFromParent( true );
-			_notNowButton = null;
+			this._notNowButton.removeFromParent( true );
+			this._notNowButton = null;
 
-			_neverButton.removeFromParent( true );
-			_neverButton = null;
+			this._neverButton.removeFromParent( true );
+			this._neverButton = null;
 
 			super.dispose();
 		}

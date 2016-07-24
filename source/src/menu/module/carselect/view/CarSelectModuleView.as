@@ -3,15 +3,16 @@
  */
 package src.menu.module.carselect.view
 {
-	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AModuleView;
-	import net.fpp.starling.module.events.ModuleEvent;
+	import net.fpp.common.starling.StaticAssetManager;
+	import net.fpp.common.starling.module.AModuleView;
+	import net.fpp.common.starling.module.events.ModuleEvent;
 
 	import src.assets.Fonts;
 
 	import starling.display.Button;
 	import starling.display.Quad;
 	import starling.events.Event;
+	import starling.text.TextFormat;
 
 	public class CarSelectModuleView extends AModuleView
 	{
@@ -23,7 +24,7 @@ package src.menu.module.carselect.view
 
 		override protected function onInit():void
 		{
-			this._back = new Quad( this.stage.stageWidth, this.stage.stageHeight, 0x000000, true );
+			this._back = new Quad( this.stage.stageWidth, this.stage.stageHeight, 0x000000 );
 			this._back.width = this.stage.stageWidth;
 			this._back.height = this.stage.stageHeight;
 			this._back.alpha = .8;
@@ -33,9 +34,14 @@ package src.menu.module.carselect.view
 			this._carlist.y = this.height / 2 - this._carlist.height / 2 - 40;
 
 			this.addChild( _backButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), 'CLOSE' ) );
-			this._backButton.fontName = Fonts.getAachenLightFont().name;
-			this._backButton.fontSize = 18;
-			this._backButton.fontColor = 0xFFFFFF;
+
+			var buttonTextFormat:TextFormat = new TextFormat();
+			buttonTextFormat.font = Fonts.getAachenLightFont().name;
+			buttonTextFormat.size = 18;
+			buttonTextFormat.color = 0xFFFFFF;
+
+			this._backButton.textFormat = buttonTextFormat;
+
 			this._backButton.x = stage.stageWidth / 2 - this._backButton.width / 2;
 			this._backButton.y = stage.stageHeight - this._backButton.height - 10;
 			this._backButton.addEventListener( Event.TRIGGERED, this.backToMapRequest );

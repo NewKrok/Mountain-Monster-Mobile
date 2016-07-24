@@ -8,16 +8,16 @@ package src.menu
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 
-	import net.fpp.services.store.StaticStoreManager;
-
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.services.store.StaticStoreManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import rv2.sound.SoundHandler;
 
+	import src.AbstractPanel;
 	import src.assets.Fonts;
 	import src.assets.Levels;
-	import src.constant.CPurchaseItem;
 	import src.common.DataManager;
+	import src.constant.CPurchaseItem;
 	import src.data.LevelResultVO;
 	import src.menu.events.MenuEvent;
 	import src.menu.module.carselect.view.CarSelectButton;
@@ -29,9 +29,8 @@ package src.menu
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.text.TextFormat;
 	import starling.textures.Texture;
-
-	import src.AbstractPanel;
 
 	public class LevelList extends AbstractPanel
 	{
@@ -147,10 +146,13 @@ package src.menu
 			_scrollContainer.addChild( _pagerEnd = new Image( Texture.fromBitmapData( new BitmapData( 10, 10, true, 0x60 ) ) ) );
 			_pagerEnd.x = ( page + 1 ) * stage.stageWidth - _pagerEnd.width;
 
+			var buttonTextFormat:TextFormat = new TextFormat();
+			buttonTextFormat.font = Fonts.getAachenLightFont().name;
+			buttonTextFormat.size = 18;
+			buttonTextFormat.color = 0xFFFFFF;
+
 			addChild( _backButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), "BACK" ) );
-			_backButton.fontSize = 18;
-			_backButton.fontColor = 0xFFFFFF;
-			_backButton.fontName = Fonts.getAachenLightFont().name;
+			_backButton.textFormat = buttonTextFormat;
 			_backButton.name = "back";
 			_backButton.x = stage.stageWidth / 2 - _backButton.width / 2;
 			_backButton.y = stage.stageHeight;
@@ -163,7 +165,7 @@ package src.menu
 
 			this.addTaskButton();
 
-			if ( !MountainMonsterIOSMain.AD_BLOCKED )
+			if( !MountainMonsterIOSMain.AD_BLOCKED )
 			{
 				this.addRemoveAdButton();
 			}
@@ -218,7 +220,7 @@ package src.menu
 
 		public function hideRemoveADButton():void
 		{
-			if ( _removeAdButton )
+			if( _removeAdButton )
 			{
 				_removeAdButton.visible = false;
 			}
@@ -346,13 +348,13 @@ package src.menu
 				this._carSelectButton.removeFromParent( true );
 				this._carSelectButton = null;
 
-				if ( _removeAdButton )
+				if( _removeAdButton )
 				{
 					_removeAdButton.removeFromParent( true );
 					_removeAdButton = null;
 				}
 
-				if ( this._taskButton )
+				if( this._taskButton )
 				{
 					this._taskButton.removeFromParent( true );
 					this._taskButton = null;

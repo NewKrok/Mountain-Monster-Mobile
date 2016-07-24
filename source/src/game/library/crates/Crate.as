@@ -8,7 +8,7 @@ package src.game.library.crates
 
 	import flash.geom.Point;
 
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import src.constant.CBox2D;
 
@@ -26,7 +26,7 @@ package src.game.library.crates
 
 		override protected function createShape():b2PolygonShape
 		{
-			var polygonShape:b2PolygonShape = new b2PolygonShape ();
+			var polygonShape:b2PolygonShape = new b2PolygonShape();
 			polygonShape.SetAsBox( this.WIDTH / 2 / CBox2D.PIXELS_TO_METRE, this.HEIGHT / 2 / CBox2D.PIXELS_TO_METRE );
 
 			return polygonShape;

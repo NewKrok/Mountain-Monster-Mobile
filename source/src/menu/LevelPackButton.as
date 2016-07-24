@@ -3,13 +3,12 @@ package src.menu
 
 	import flash.geom.Point;
 
-	import net.fpp.services.store.StaticStoreManager;
+	import net.fpp.common.services.store.StaticStoreManager;
 
-	import net.fpp.starling.StaticAssetManager;
-
-	import src.constant.CPurchaseItem;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import src.common.DataManager;
+	import src.constant.CPurchaseItem;
 	import src.menu.events.MenuEvent;
 
 	import starling.display.Image;
@@ -67,7 +66,7 @@ package src.menu
 
 		public function unlock():void
 		{
-			if ( !_isLocked )
+			if( !_isLocked )
 			{
 				return;
 			}
@@ -99,11 +98,11 @@ package src.menu
 				{
 					if( _isLocked )
 					{
-						if ( _worldID == 1 )
+						if( _worldID == 1 )
 						{
 							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_1 );
 						}
-						else if ( _worldID == 2 )
+						else if( _worldID == 2 )
 						{
 							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_2 );
 						}

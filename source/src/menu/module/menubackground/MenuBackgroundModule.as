@@ -9,7 +9,7 @@ package src.menu.module.menubackground
 	import flash.geom.Point;
 	import flash.sensors.Accelerometer;
 
-	import net.fpp.starling.module.AModule;
+	import net.fpp.common.starling.module.AModule;
 
 	import src.menu.module.menubackground.view.MenuBackgroundView;
 
@@ -26,7 +26,7 @@ package src.menu.module.menubackground
 
 		public function MenuBackgroundModule()
 		{
-			this._view = new MenuBackgroundView();
+			this._view = this.createModuleView( MenuBackgroundView ) as MenuBackgroundView;
 
 			CONFIG::IS_MOBILE_VERSION
 			{

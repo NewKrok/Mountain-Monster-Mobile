@@ -5,7 +5,7 @@ package src.game.module.notification.view
 {
 	import caurina.transitions.Tweener;
 
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import starling.display.Image;
 	import starling.display.Sprite;

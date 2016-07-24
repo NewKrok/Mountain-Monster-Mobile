@@ -3,23 +3,22 @@
  */
 package src.menu.module.task.view
 {
-	import src.constant.CTask;
-	import src.display.AnimatedUIBox;
-
-	import net.fpp.achievement.AchievementVO;
-	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AView;
-	import net.fpp.starling.module.events.ModuleEvent;
+	import net.fpp.common.achievement.AchievementVO;
+	import net.fpp.common.starling.StaticAssetManager;
+	import net.fpp.common.starling.module.AView;
+	import net.fpp.common.starling.module.events.ModuleEvent;
 
 	import src.assets.Fonts;
+	import src.constant.CTask;
+	import src.display.AnimatedUIBox;
 	import src.menu.module.task.events.TaskModuleEvent;
 
 	import starling.display.Button;
 	import starling.display.Quad;
 	import starling.events.Event;
 	import starling.text.TextField;
-	import starling.utils.HAlign;
-	import starling.utils.VAlign;
+	import starling.text.TextFormat;
+	import starling.utils.Align;
 
 	public class TasksInProgressView extends AView
 	{
@@ -51,14 +50,15 @@ package src.menu.module.task.view
 
 		private function createTitle():void
 		{
-			this._title = new TextField( this.width, 25, '' );
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 20;
+			titleTextFormat.color = 0xFFFFFF;
+			titleTextFormat.horizontalAlign = Align.CENTER;
+			titleTextFormat.verticalAlign = Align.CENTER;
 
+			this._title = new TextField( this.width, 25, '', titleTextFormat );
 			this._title.touchable = false;
-			this._title.fontSize = 20;
-			this._title.color = 0xFFFFFF;
-			this._title.fontName = Fonts.getAachenLightFont().name;
-			this._title.hAlign = HAlign.CENTER;
-			this._title.vAlign = VAlign.CENTER;
 
 			this._title.y = 10;
 			this.addChild( this._title );
@@ -66,14 +66,15 @@ package src.menu.module.task.view
 
 		private function createSubTitle():void
 		{
-			this._subTitle = new TextField( this.width, 25, 'COMPLETE ALL TASK TO UNLOCK A NEW CAR!' );
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 15;
+			titleTextFormat.color = 0xFFFFFF;
+			titleTextFormat.horizontalAlign = Align.CENTER;
+			titleTextFormat.verticalAlign = Align.TOP;
 
+			this._subTitle = new TextField( this.width, 25, 'COMPLETE ALL TASK TO UNLOCK A NEW CAR!', titleTextFormat );
 			this._subTitle.touchable = false;
-			this._subTitle.fontSize = 15;
-			this._subTitle.color = 0xFFFFFF;
-			this._subTitle.fontName = Fonts.getAachenLightFont().name;
-			this._subTitle.hAlign = HAlign.CENTER;
-			this._subTitle.vAlign = VAlign.TOP;
 
 			this._subTitle.y = this._title.y + this._title.height;
 			this.addChild( this._subTitle );
@@ -81,7 +82,7 @@ package src.menu.module.task.view
 
 		private function createBackground():void
 		{
-			this._back = new Quad( this.stage.stageWidth, this.stage.stageHeight, 0x000000, true );
+			this._back = new Quad( this.stage.stageWidth, this.stage.stageHeight, 0x000000 );
 			this._back.width = this.stage.stageWidth;
 			this._back.height = this.stage.stageHeight;
 			this._back.alpha = .8;
@@ -92,9 +93,13 @@ package src.menu.module.task.view
 		{
 			this.addChild( _backButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), 'CLOSE' ) );
 
-			this._backButton.fontName = Fonts.getAachenLightFont().name;
-			this._backButton.fontSize = 18;
-			this._backButton.fontColor = 0xFFFFFF;
+			var buttonTextFormat:TextFormat = new TextFormat();
+			buttonTextFormat.font = Fonts.getAachenLightFont().name;
+			buttonTextFormat.size = 18;
+			buttonTextFormat.color = 0xFFFFFF;
+
+			this._backButton.textFormat = buttonTextFormat;
+
 			this._backButton.x = this.stage.stageWidth / 2 - this._backButton.width / 2;
 			this._backButton.y = this.stage.stageHeight - this._backButton.height - 10;
 
@@ -164,7 +169,7 @@ package src.menu.module.task.view
 					taskView.setToLocked();
 				}
 
-				if ( hasNewTask )
+				if( hasNewTask )
 				{
 					var descriptionText:String = tasks[ i ].description.replace( '$value', tasks[ i ].currentValue ).toUpperCase();
 					taskView.setDescriptionText( descriptionText );
@@ -188,11 +193,11 @@ package src.menu.module.task.view
 
 		private function orderTaskViews():void
 		{
-			for ( var i:int = 0; i < this._taskViews.length; i++ )
+			for( var i:int = 0; i < this._taskViews.length; i++ )
 			{
-				if ( !this._taskViews[i].parent )
+				if( !this._taskViews[ i ].parent )
 				{
-					var taskView:TaskView = this._taskViews[i];
+					var taskView:TaskView = this._taskViews[ i ];
 
 					this._taskViews.splice( i, 1 );
 					this._taskViews.push( taskView );

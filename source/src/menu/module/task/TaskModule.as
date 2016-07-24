@@ -3,8 +3,8 @@
  */
 package src.menu.module.task
 {
-	import net.fpp.starling.module.AModule;
-	import net.fpp.starling.module.events.ModuleEvent;
+	import net.fpp.common.starling.module.AModule;
+	import net.fpp.common.starling.module.events.ModuleEvent;
 
 	import src.assets.CarDatas;
 	import src.common.TasksManager;
@@ -21,7 +21,7 @@ package src.menu.module.task
 			this._taskModel = this.createModel( TaskModel ) as TaskModel;
 			this._taskModel.setWorldID( worldID );
 
-			this._taskModuleView = this.createView( TaskModuleView ) as TaskModuleView;
+			this._taskModuleView = this.createModuleView( TaskModuleView ) as TaskModuleView;
 			this._taskModuleView.addEventListener( ModuleEvent.MODULE_VIEW_INITED, this.onModuleViewInited );
 			this._taskModuleView.addEventListener( ModuleEvent.DISPOSE_REQUEST, this.backToMapRequest );
 			this._taskModuleView.addEventListener( TaskModuleEvent.REMOVE_TASK_REQUEST, this.onUpdateTaskListRequest );

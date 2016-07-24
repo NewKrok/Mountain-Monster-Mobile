@@ -4,18 +4,18 @@
 
 	import flash.geom.Point;
 
-	import net.fpp.services.store.StaticStoreManager;
+	import net.fpp.common.services.store.StaticStoreManager;
 
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import rv2.sound.SoundHandler;
 
 	import src.AbstractPanel;
 	import src.assets.Fonts;
 	import src.assets.Levels;
+	import src.common.DataManager;
 	import src.constant.CPurchaseItem;
 	import src.constant.CStarRequired;
-	import src.common.DataManager;
 	import src.menu.events.MenuEvent;
 	import src.menu.module.carselect.view.CarSelectButton;
 
@@ -23,6 +23,7 @@
 	import starling.display.Button;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.text.TextFormat;
 
 	public class LevelPackList extends AbstractPanel
 	{
@@ -75,11 +76,14 @@
 			_levelPackButtonContainer.x = stage.stageWidth / 2 - _levelPackButtonContainer.width / 2;
 			_levelPackButtonContainer.y = 20;
 
+			var buttonTextFormat:TextFormat = new TextFormat();
+			buttonTextFormat.font = Fonts.getAachenLightFont().name;
+			buttonTextFormat.size = 18;
+			buttonTextFormat.color = 0xFFFFFF;
+
 			addChild( _backButton = new Button( StaticAssetManager.instance.getTexture( "base_button" ), "BACK" ) );
 			_backButton.name = "back_button";
-			_backButton.fontSize = 18;
-			_backButton.fontColor = 0xFFFFFF;
-			_backButton.fontName = Fonts.getAachenLightFont().name;
+			_backButton.textFormat = buttonTextFormat;
 			_backButton.x = stage.stageWidth / 2 - _backButton.width / 2;
 			_backButton.y = stage.stageHeight;
 			Tweener.addTween( _backButton, {
@@ -88,7 +92,7 @@
 				y: Starling.current.stage.stageHeight - _backButton.height - margin
 			} );
 
-			if ( !MountainMonsterIOSMain.AD_BLOCKED )
+			if( !MountainMonsterIOSMain.AD_BLOCKED )
 			{
 				this.addRemoveAdButton();
 			}
@@ -124,7 +128,7 @@
 
 		public function hideRemoveADButton():void
 		{
-			if ( _removeAdButton )
+			if( _removeAdButton )
 			{
 				_removeAdButton.visible = false;
 			}
@@ -150,11 +154,11 @@
 		{
 			var allEarnedStarCount:int = DataManager.getAllEarnedStarCount();
 
-			if ( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_1 )
+			if( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_1 )
 			{
 				this.unlockLevelPack( 1 );
 			}
-			if ( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_2 )
+			if( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_2 )
 			{
 				this.unlockLevelPack( 2 );
 			}
@@ -194,10 +198,11 @@
 
 			if( !DataManager.getIsLevelPackUnlocked( levelPackID ) )
 			{
-				if ( levelPackID == 0 )
+				if( levelPackID == 0 )
 				{
 					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_1 );
-				} else if ( levelPackID == 0 )
+				}
+				else if( levelPackID == 0 )
 				{
 					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_2 );
 				}
@@ -261,7 +266,7 @@
 			this._carSelectButton.removeFromParent( true );
 			this._carSelectButton = null;
 
-			if ( this._removeAdButton )
+			if( this._removeAdButton )
 			{
 				this._removeAdButton.removeFromParent( true );
 				this._removeAdButton = null;

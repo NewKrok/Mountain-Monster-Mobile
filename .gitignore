@@ -8,3 +8,5 @@ source/AppIconsForPublish/
 source/mountain_monster.ipa
 
 source/*.html
+
+out/

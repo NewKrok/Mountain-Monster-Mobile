@@ -7,8 +7,9 @@ package src.menu.module.menubackground.view
 
 	import flash.geom.Point;
 
-	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AModuleView;
+	import net.fpp.common.starling.StaticAssetManager;
+
+	import net.fpp.common.starling.module.AModuleView;
 
 	import src.menu.module.menubackground.constant.CBackgroundView;
 
@@ -90,8 +91,6 @@ package src.menu.module.menubackground.view
 			textures.length = 0;
 			textures = null;
 
-			container.flatten( true );
-
 			return container;
 		}
 
@@ -141,6 +140,8 @@ package src.menu.module.menubackground.view
 
 			this._container.removeFromParent( true );
 			this._container = null;
+
+			super.dispose();
 		}
 	}
 }

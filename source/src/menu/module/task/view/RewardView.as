@@ -5,16 +5,15 @@ package src.menu.module.task.view
 {
 	import caurina.transitions.Tweener;
 
-	import net.fpp.starling.StaticAssetManager;
-	import net.fpp.starling.module.AView;
+	import net.fpp.common.starling.StaticAssetManager;
+	import net.fpp.common.starling.module.AView;
 
 	import src.assets.Fonts;
 
 	import starling.display.Image;
-
 	import starling.text.TextField;
-	import starling.utils.HAlign;
-	import starling.utils.VAlign;
+	import starling.text.TextFormat;
+	import starling.utils.Align;
 
 	public class RewardView extends AView
 	{
@@ -33,14 +32,15 @@ package src.menu.module.task.view
 
 		private function createTitle():void
 		{
-			this._title = new TextField( 200, 25, 'YOUR REWARD:' );
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 15;
+			titleTextFormat.color = 0xFFFF00;
+			titleTextFormat.horizontalAlign = Align.CENTER;
+			titleTextFormat.verticalAlign = Align.CENTER;
 
+			this._title = new TextField( 200, 25, 'YOUR REWARD:', titleTextFormat );
 			this._title.touchable = false;
-			this._title.fontSize = 15;
-			this._title.color = 0xFFFF00;
-			this._title.fontName = Fonts.getAachenLightFont( ).name;
-			this._title.hAlign = HAlign.CENTER;
-			this._title.vAlign = VAlign.CENTER;
 
 			this._title.x = -this._title.width / 2;
 			this._title.y = -40;
@@ -63,7 +63,12 @@ package src.menu.module.task.view
 
 		private function startBackgroundAnimation():void
 		{
-			Tweener.addTween( this._back, { time: 20, rotation: Math.PI * 2, onComplete: this.startBackgroundAnimation, transition: 'linear' } );
+			Tweener.addTween( this._back, {
+				time: 20,
+				rotation: Math.PI * 2,
+				onComplete: this.startBackgroundAnimation,
+				transition: 'linear'
+			} );
 		}
 
 		public function setCarGraphicId( id:uint ):void

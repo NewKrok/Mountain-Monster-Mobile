@@ -3,7 +3,7 @@
  */
 package src.game.module.snow.view
 {
-	import net.fpp.starling.module.AModuleView;
+	import net.fpp.common.starling.module.AModuleView;
 
 	public class SnowModuleView extends AModuleView
 	{

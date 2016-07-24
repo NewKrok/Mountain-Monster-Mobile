@@ -9,7 +9,7 @@ package src.game.library.crates
 
 	import flash.geom.Point;
 
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import src.constant.CBox2D;
 
@@ -27,10 +27,10 @@ package src.game.library.crates
 
 		override protected function createShape():b2PolygonShape
 		{
-			var polygonShape:b2PolygonShape = new b2PolygonShape ();
+			var polygonShape:b2PolygonShape = new b2PolygonShape();
 			var vertices:Vector.<b2Vec2>;
 
-			if ( this._scale == 1 )
+			if( this._scale == 1 )
 			{
 				vertices = new <b2Vec2>[
 					new b2Vec2( WIDTH / 2 / CBox2D.PIXELS_TO_METRE * -1, HEIGHT / 2 / CBox2D.PIXELS_TO_METRE * -1 ),

@@ -5,14 +5,15 @@ package src.menu.module.task.view
 {
 	import flash.geom.Rectangle;
 
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
 	import src.assets.Fonts;
 	import src.common.TasksManager;
 
 	import starling.display.Button;
 	import starling.display.Image;
-	import starling.utils.VAlign;
+	import starling.text.TextFormat;
+	import starling.utils.Align;
 
 	public class TaskButton extends Button
 	{
@@ -26,10 +27,13 @@ package src.menu.module.task.view
 
 			super( StaticAssetManager.instance.getTexture( 'task_button' ), '' );
 
-			this.fontSize = 13;
-			this.fontColor = 0xFFFFFF;
-			this.fontName = Fonts.getAachenLightFont().name;
-			this.textVAlign = VAlign.CENTER;
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 13;
+			titleTextFormat.color = 0xFFFFFF;
+			titleTextFormat.verticalAlign = Align.CENTER;
+
+			this.textFormat = titleTextFormat;
 
 			var newTextBounds:Rectangle = this.textBounds;
 			newTextBounds.top = 8;
@@ -37,7 +41,7 @@ package src.menu.module.task.view
 
 			this.updateCounter();
 
-			if ( TasksManager.hasNonViewedTaskByWorldID( this._worldID ) )
+			if( TasksManager.hasNonViewedTaskByWorldID( this._worldID ) )
 			{
 				this.showNewIcon();
 			}
@@ -70,7 +74,7 @@ package src.menu.module.task.view
 
 		private function disposeNewIcon():void
 		{
-			if ( this._newIcon )
+			if( this._newIcon )
 			{
 				this._newIcon.removeFromParent( true );
 				this._newIcon = null;

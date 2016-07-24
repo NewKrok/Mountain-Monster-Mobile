@@ -3,7 +3,7 @@
  */
 package src.game.module.snow
 {
-	import net.fpp.starling.module.AModule;
+	import net.fpp.common.starling.module.AModule;
 
 	import src.game.module.snow.view.SnowModuleView;
 
@@ -11,7 +11,7 @@ package src.game.module.snow
 	{
 		public function SnowModule()
 		{
-			this._view = new SnowModuleView();
+			this._view = this.createModuleView( SnowModuleView ) as SnowModuleView;
 		}
 
 		public function update():void

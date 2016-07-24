@@ -5,7 +5,7 @@ package src.game.module.notification.view
 {
 	import caurina.transitions.Tweener;
 
-	import net.fpp.starling.module.AModuleView;
+	import net.fpp.common.starling.module.AModuleView;
 
 	import rv2.sound.SoundHandler;
 

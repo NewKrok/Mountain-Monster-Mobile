@@ -1,9 +1,8 @@
 package src.game.module.help
 {
-	import net.fpp.starling.module.AModule;
+	import net.fpp.common.starling.module.AModule;
 
 	import src.game.module.help.events.HelpModuleEvent;
-
 	import src.game.module.help.view.HelpModuleView;
 
 	public class HelpModule extends AModule
@@ -32,7 +31,7 @@ package src.game.module.help
 
 		public function HelpModule( worldId:int, onComplete:Function ):void
 		{
-			this._view = new HelpModuleView();
+			this._view = this.createModuleView( HelpModuleView ) as HelpModuleView;
 			this._view.addEventListener( HelpModuleEvent.CLOSE_REQUEST, this.onCloseRequest );
 
 			( this._view as HelpModuleView ).setHelpText( this.HELP_TEXTS[ worldId ] );

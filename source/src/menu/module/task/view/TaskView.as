@@ -5,17 +5,17 @@ package src.menu.module.task.view
 {
 	import caurina.transitions.Tweener;
 
-	import net.fpp.starling.StaticAssetManager;
+	import net.fpp.common.starling.StaticAssetManager;
 
-	import net.fpp.starling.module.AView;
+	import net.fpp.common.starling.module.AView;
 
 	import src.assets.Fonts;
 	import src.menu.module.task.events.TaskModuleEvent;
 
 	import starling.display.Image;
 	import starling.text.TextField;
-	import starling.utils.HAlign;
-	import starling.utils.VAlign;
+	import starling.text.TextFormat;
+	import starling.utils.Align;
 
 	public class TaskView extends AView
 	{
@@ -33,14 +33,15 @@ package src.menu.module.task.view
 
 		override protected function onInit():void
 		{
-			this._description = new TextField( 10, 10, '' );
+			var titleTextFormat:TextFormat = new TextFormat();
+			titleTextFormat.font = Fonts.getAachenLightFont().name;
+			titleTextFormat.size = 12;
+			titleTextFormat.color = 0xFFFFFF;
+			titleTextFormat.horizontalAlign = Align.CENTER;
+			titleTextFormat.verticalAlign = Align.CENTER;
 
+			this._description = new TextField( 10, 10, '', titleTextFormat );
 			this._description.touchable = false;
-			this._description.fontSize = 12;
-			this._description.color = 0xFFFFFF;
-			this._description.fontName = Fonts.getAachenLightFont().name;
-			this._description.hAlign = HAlign.CENTER;
-			this._description.vAlign = VAlign.CENTER;
 
 			this._description.x = 5;
 			this._description.y = 5;
@@ -50,7 +51,7 @@ package src.menu.module.task.view
 
 		public function setToCompleted():void
 		{
-			if ( !this._isEarned )
+			if( !this._isEarned )
 			{
 				this._isEarned = true;
 				this.setBackground( 'task_background_completed' );
@@ -66,7 +67,7 @@ package src.menu.module.task.view
 		private function onRemovedHandler():void
 		{
 			this.setToLocked();
-			
+
 			this.removeFromParent();
 
 			this.dispatchEvent( new TaskModuleEvent( TaskModuleEvent.REMOVE_TASK_REQUEST, _taskID ) );
@@ -79,7 +80,7 @@ package src.menu.module.task.view
 				this.removeBackground();
 			}
 
-			if ( this._isEarned || !this._back )
+			if( this._isEarned || !this._back )
 			{
 				this._isEarned = false;
 				this.setBackground( 'task_background' );

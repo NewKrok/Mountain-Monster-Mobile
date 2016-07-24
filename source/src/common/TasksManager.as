@@ -3,10 +3,13 @@
  */
 package src.common
 {
-	import src.assets.*;
+	import net.fpp.common.achievement.AchievementManager;
+	import net.fpp.common.achievement.AchievementVO;
 
-	import net.fpp.achievement.AchievementManager;
-	import net.fpp.achievement.AchievementVO;
+	import src.assets.ITaskList;
+	import src.assets.TaskListWorld1;
+	import src.assets.TaskListWorld2;
+	import src.assets.TaskListWorld3;
 
 	import src.constant.CTask;
 
@@ -34,7 +37,7 @@ package src.common
 			var completedTasks:Array = DataManager.getCompletedTaskListByWorld( worldID );
 			var neededTaskCount:int = CTask.MAX_TASK_COUNT_AT_THE_SAME_TIME - _worldTaskManagers[ worldID ].getAchievementVOs().length;
 
-			if ( completedTasks.length == CTask.MAXIMUM_TASK_PER_WORLD )
+			if( completedTasks.length == CTask.MAXIMUM_TASK_PER_WORLD )
 			{
 				return;
 			}
@@ -136,7 +139,7 @@ package src.common
 
 		public static function getRewardCarIdByWorld( worldID:uint ):uint
 		{
-			return _rewardsCarID[worldID];
+			return _rewardsCarID[ worldID ];
 		}
 
 		public static function getAchievementManagerByWorld( worldID:uint ):AchievementManager
@@ -163,7 +166,7 @@ package src.common
 		{
 			for( var i:int = 0; i < _worldTaskManagers.length; i++ )
 			{
-				_worldTaskManagers[i].save();
+				_worldTaskManagers[ i ].save();
 			}
 		}
 	}

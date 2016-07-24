@@ -3,8 +3,8 @@
  */
 package src.menu.module.task
 {
-	import net.fpp.achievement.AchievementVO;
-	import net.fpp.starling.module.AModel;
+	import net.fpp.common.achievement.AchievementVO;
+	import net.fpp.common.starling.module.AModel;
 
 	public class TaskModel extends AModel
 	{

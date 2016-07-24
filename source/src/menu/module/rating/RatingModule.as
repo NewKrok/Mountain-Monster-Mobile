@@ -3,7 +3,7 @@
  */
 package src.menu.module.rating
 {
-	import net.fpp.starling.module.AModule;
+	import net.fpp.common.starling.module.AModule;
 
 	import src.common.DataManager;
 	import src.menu.module.rating.events.RatingModuleEvent;
@@ -13,7 +13,7 @@ package src.menu.module.rating
 	{
 		public function RatingModule()
 		{
-			this._view = new RatingModuleView();
+			this._view = this.createModuleView( RatingModuleView ) as RatingModuleView;
 			this._view.addEventListener( RatingModuleEvent.RATE_REQUEST, this.handleRateRequest );
 			this._view.addEventListener( RatingModuleEvent.RATE_LATER_REQUEST, this.handleRateLaterRequest );
 			this._view.addEventListener( RatingModuleEvent.RATE_NEVER_REQUEST, this.handleRateNeverRequest );

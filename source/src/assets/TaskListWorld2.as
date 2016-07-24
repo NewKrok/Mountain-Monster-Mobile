@@ -3,7 +3,7 @@
  */
 package src.assets
 {
-	import net.fpp.achievement.AchievementVO;
+	import net.fpp.common.achievement.AchievementVO;
 
 	public class TaskListWorld2 implements ITaskList
 	{
