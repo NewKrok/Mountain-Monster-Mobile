@@ -7,6 +7,11 @@ package src.assets
 		[Embed(source="../../../assets/texture/atlas.xml", mimeType="application/octet-stream")]
 		public static const atlas_xml:Class;
 
+		[Embed(source="../../../assets/texture/atlas2.png")]
+		public static const atlas2:Class;
+		[Embed(source="../../../assets/texture/atlas2.xml", mimeType="application/octet-stream")]
+		public static const atlas2_xml:Class;
+
 		[Embed(source="../../../assets/texture/atlas3.png")]
 		public static const atlas3:Class;
 		[Embed(source="../../../assets/texture/atlas3.xml", mimeType="application/octet-stream")]

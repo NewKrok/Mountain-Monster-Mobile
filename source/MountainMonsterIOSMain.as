@@ -63,7 +63,7 @@
 	{
 
 		public static var LOG_ENABLED:Boolean = false;
-		public static var IS_ALL_LEVEL_ENABLED:Boolean = false;
+		public static var IS_ALL_LEVEL_ENABLED:Boolean = true;
 		public static var IS_ALL_CAR_ENABLED:Boolean = false;
 
 		public static var IS_IOS:Boolean = false;
@@ -85,8 +85,10 @@
 
 		[Embed(source="../assets/system/startupHD.png")]
 		private static var BackgroundHD:Class;
+
 		[Embed(source="../assets/system/startup_ipad_small.png")]
 		private static var BackgroundIPAD:Class;
+
 		[Embed(source="../assets/system/startup_ipad_large.png")]
 		private static var BackgroundIPADLarge:Class;
 
