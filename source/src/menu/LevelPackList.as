@@ -162,6 +162,10 @@
 			{
 				this.unlockLevelPack( 2 );
 			}
+			if( allEarnedStarCount >= CStarRequired.UNLOCK_LEVEL_PACK_3 )
+			{
+				this.unlockLevelPack( 3 );
+			}
 		}
 
 		private function onButtonTriggered( e:Event ):void
@@ -202,9 +206,13 @@
 				{
 					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_1 );
 				}
-				else if( levelPackID == 0 )
+				else if( levelPackID == 1 )
 				{
 					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_2 );
+				}
+				else if( levelPackID == 2 )
+				{
+					StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_3 );
 				}
 			}
 			else

@@ -10,13 +10,13 @@ package src.common
 	import src.assets.TaskListWorld1;
 	import src.assets.TaskListWorld2;
 	import src.assets.TaskListWorld3;
-
+	import src.assets.TaskListWorld4;
 	import src.constant.CTask;
 
 	public class TasksManager
 	{
 		private static var _worldTaskManagers:Vector.<AchievementManager> = new <AchievementManager>[];
-		private static var _taskLists:Vector.<ITaskList> = new <ITaskList>[ new TaskListWorld1, new TaskListWorld2, new TaskListWorld3 ];
+		private static var _taskLists:Vector.<ITaskList> = new <ITaskList>[ new TaskListWorld1, new TaskListWorld2, new TaskListWorld3, new TaskListWorld4 ];
 		private static var _rewardsCarID:Vector.<uint> = new <uint>[ 2000, 2001, 2002, 2003 ];
 
 		public static function init():void

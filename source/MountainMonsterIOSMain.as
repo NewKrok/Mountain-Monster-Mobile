@@ -30,9 +30,6 @@
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
-	import flash.events.TouchEvent;
-	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.system.Capabilities;
 
@@ -62,9 +59,9 @@
 	public class MountainMonsterIOSMain extends Sprite
 	{
 
-		public static var LOG_ENABLED:Boolean = false;
+		public static var LOG_ENABLED:Boolean = true;
 		public static var IS_ALL_LEVEL_ENABLED:Boolean = true;
-		public static var IS_ALL_CAR_ENABLED:Boolean = false;
+		public static var IS_ALL_CAR_ENABLED:Boolean = true;
 
 		public static var IS_IOS:Boolean = false;
 		public static var AD_BLOCKED:Boolean = false;
@@ -269,7 +266,7 @@
 		private function onDeactivate( event:flash.events.Event ):void
 		{
 			Tweener.pauseAllTweens();
-			if( !_loaded )
+			if( !_loaded || !Starling.current || !Starling.current.root )
 			{
 				return;
 			}

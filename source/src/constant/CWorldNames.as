@@ -8,5 +8,6 @@ package src.constant
 		public static const SHARP_MOUNTAIN:String = 'Sharp Mountain';
 		public static const ICE_WORLD:String = 'Ice World';
 		public static const DESERT_VALLEY:String = 'Desert Valley';
+		public static const CANDY_WORLD:String = 'Candy World';
 	}
 }

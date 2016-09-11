@@ -34,9 +34,9 @@ package src.menu
 			useHandCursor = true;
 			_worldID = worldID;
 
-			if( worldID <= 2 )
+			if( worldID <= 3 )
 			{
-				addChild( _back = new Image( StaticAssetManager.instance.getTexture( "level_pack_" + worldID ) ) );
+				addChild( _back = new Image( StaticAssetManager.instance.getTexture( "level_pack_" + Math.min( worldID, 2 ) ) ) );
 
 				if( !DataManager.getIsLevelPackUnlocked( worldID ) )
 				{
@@ -105,6 +105,10 @@ package src.menu
 						else if( _worldID == 2 )
 						{
 							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_2 );
+						}
+						else if( _worldID == 3 )
+						{
+							StaticStoreManager.purchaseNonConsumableProduct( CPurchaseItem.PURCHASE_ITEM_LEVEL_PACK_3 );
 						}
 					}
 					else

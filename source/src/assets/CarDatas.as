@@ -70,6 +70,17 @@ package src.assets
 					/*BODY_X_OFFSET*/   0,
 					/*BODY_Y_OFFSET*/   0
 			),
+			new CarData(
+					/*ID*/              5,
+					/*GRAPHIC ID*/      13,
+					/*NAME*/            "CANDY CAR",
+					/*STAR_REQUIRED*/	CStarRequired.UNLOCK_CAR_TYPE_5,
+					/*SPEED*/           13,
+					/*ROTATION*/        8,
+					/*DAMPING*/         .6,
+					/*BODY_X_OFFSET*/   0,
+					/*BODY_Y_OFFSET*/   0
+			),
 
 			// CUSTOM CARS =============================================
 			new CarData(
@@ -170,6 +181,20 @@ package src.assets
 					/*BODY_G_X_OFFSET*/ -2.5,
 					/*BODY_G_Y_OFFSET*/ 0,
 					/*UNLOCK_INFORMATION*/	CWorldNames.DESERT_VALLEY.toUpperCase() + ' TASKS'
+			),
+			new CarData(
+					/*ID*/              2003,
+					/*GRAPHIC ID*/      13,
+					/*NAME*/            "MISSING CAR!!!!!",
+					/*STAR_REQUIRED*/	0,
+					/*SPEED*/           14,
+					/*ROTATION*/        .5,
+					/*DAMPING*/         .5,
+					/*BODY_X_OFFSET*/   -2,
+					/*BODY_Y_OFFSET*/   -4,
+					/*BODY_G_X_OFFSET*/ -2.5,
+					/*BODY_G_Y_OFFSET*/ 0,
+					/*UNLOCK_INFORMATION*/	CWorldNames.CANDY_WORLD.toUpperCase() + ' TASKS'
 			)
 		];
 
