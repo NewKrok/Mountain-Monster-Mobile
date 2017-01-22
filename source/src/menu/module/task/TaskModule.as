@@ -4,7 +4,7 @@
 package src.menu.module.task
 {
 	import net.fpp.common.starling.module.AModule;
-	import net.fpp.common.starling.module.events.ModuleEvent;
+	import net.fpp.common.starling.module.event.ModuleEvent;
 
 	import src.assets.CarDatas;
 	import src.common.TasksManager;

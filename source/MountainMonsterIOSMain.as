@@ -9,6 +9,8 @@
 	import net.fpp.common.services.store.StoreManagerMock;
 
 	import net.fpp.common.starling.StaticAssetManager;
+	import net.fpp.common.starling.constant.CAspectRatio;
+	import net.fpp.common.starling.core.AStarlingMain;
 
 	import rv2.sound.SoundHandler;
 
@@ -56,9 +58,8 @@
 	import flash.net.URLRequest;
 
 	[SWF(width="480", height="320", frameRate="60", backgroundColor="#000000")]
-	public class MountainMonsterIOSMain extends Sprite
+	public class MountainMonsterIOSMain extends AStarlingMain
 	{
-
 		public static var LOG_ENABLED:Boolean = true;
 		public static var IS_ALL_LEVEL_ENABLED:Boolean = true;
 		public static var IS_ALL_CAR_ENABLED:Boolean = true;
@@ -89,25 +90,28 @@
 		[Embed(source="../assets/system/startup_ipad_large.png")]
 		private static var BackgroundIPADLarge:Class;
 
-		private var mStarling:Starling;
+		private var _background:Bitmap;
 
 		private var _loaded:Boolean = false;
 
 		public function MountainMonsterIOSMain():void
 		{
-			addEventListener( flash.events.Event.ADDED_TO_STAGE, initSWF );
+			this.setPreAppConfig();
+
+			super();
 		}
 
-		private function initSWF( event:flash.events.Event ):void
+		private function setPreAppConfig():void
 		{
-			removeEventListener( flash.events.Event.ADDED_TO_STAGE, initSWF );
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP;
+			this._aspectRatio = CAspectRatio.LANDSCAPE;
+
+			StaticAssetManager.scaleFactor = 2;
+
+			Starling.multitouchEnabled = true;
 
 			TerrainTextures.init();
 
-			initSounds();
-			initStarling();
+			this.initSounds();
 		}
 
 		private function initSounds():void
@@ -123,14 +127,11 @@
 			SoundHandler.attach( SND_COUNTER_3, "SND_COUNTER_3", "fx" );
 		}
 
-		private function initStarling():void
+		override protected function onInit():void
 		{
-			StaticAssetManager.scaleFactor = 2;
-
-			IS_IOS = Capabilities.manufacturer.indexOf( "iOS" ) != -1;
 			CONFIG::IS_IOS_VERSION
 			{
-				if( IS_IOS )
+				if( this._isIOS )
 				{
 					gcManager = Snapdragon.instance.gameCenterManager;
 					adManager = Snapdragon.instance.adManager;
@@ -138,7 +139,7 @@
 					adManager.addEventListener( SDAdEvent.ADMOB_FULL_SCREEN_VIEW_AD_ACTION_FINISHED, resumeByAd );
 					socialManager = Snapdragon.instance.socialManager;
 					notificationManager = Snapdragon.instance.notificationManager;
-					notificationRequest();
+					this.notificationRequest();
 
 					StaticStoreManager.init( Snapdragon.instance.storeManager );
 				}
@@ -146,64 +147,20 @@
 				SoundMixer.audioPlaybackMode = AudioPlaybackMode.AMBIENT;
 			}
 
-			if( !IS_IOS )
+			if( !this._isIOS )
 			{
 				StaticStoreManager.init( new StoreManagerMock() );
 			}
 
-			var MAC:Boolean = ( CONFIG::IS_IOS_VERSION || CONFIG::IS_ANDROID_VERSION ) ? false : true;
-			var isIPAD:Boolean = MAC ? false : ( stage.fullScreenHeight == 768 || stage.fullScreenHeight == 1536 ) ? true : false;
-			var stageWidth:int = 0;
-			var stageHeight:int = 0;
-			if( isIPAD )
-			{
-				stageWidth = 1024 / 2;
-				stageHeight = 768 / 2;
-			}
-			else
-			{
-				stageWidth = !MAC ? ( ( stage.fullScreenWidth / stage.fullScreenHeight != 480 / 320 ) ? 568 : 480 ) : ( ( stage.stageWidth / stage.stageHeight != 480 / 320 ) ? 568 : 480 );
-				stageHeight = 320;
-			}
-			Starling.multitouchEnabled = true;
-			var viewPort:Rectangle = RectangleUtil.fit(
-					new Rectangle( 0, 0, stageWidth, stageHeight ),
-					new Rectangle( 0, 0, MAC ? stage.stageWidth : stage.fullScreenWidth, MAC ? stage.stageHeight : stage.fullScreenHeight ),
-					ScaleMode.SHOW_ALL, IS_IOS
-			);
+			this._background = this.stage.fullScreenHeight == 768 ? new BackgroundIPAD : ( this.stage.fullScreenHeight == 1536 ? new BackgroundIPADLarge : new BackgroundHD() );
+			var tmpWidth:Number = this._isIOS ? this.stage.fullScreenWidth : this.stage.stageWidth;
+			var tmpHeight:Number = this._isIOS ? this.stage.fullScreenHeight : this.stage.stageHeight;
 
-			var background:Bitmap = stage.fullScreenHeight == 768 ? new BackgroundIPAD : ( stage.fullScreenHeight == 1536 ? new BackgroundIPADLarge : new BackgroundHD() );
-			var tmpWidth:Number = IS_IOS ? stage.fullScreenWidth : stage.stageWidth;
-			var tmpHeight:Number = IS_IOS ? stage.fullScreenHeight : stage.stageHeight;
+			this._background.x = tmpWidth / 2 - this._background.width / 2;
+			this._background.y = tmpHeight / 2 - this._background.height / 2;
+			this._background.smoothing = true;
+			this.addChild( this._background );
 
-			background.x = tmpWidth / 2 - background.width / 2;
-			background.y = tmpHeight / 2 - background.height / 2;
-			background.smoothing = true;
-			addChild( background );
-			mStarling = new Starling( MountainMonsterIOS, stage, viewPort );
-			mStarling.stage.stageWidth = stageWidth;
-			mStarling.stage.stageHeight = stageHeight;
-			mStarling.simulateMultitouch = false;
-			mStarling.enableErrorChecking = false;
-			mStarling.skipUnchangedFrames = true;
-			mStarling.antiAliasing = 3;
-
-			mStarling.addEventListener( starling.events.Event.ROOT_CREATED, function ():void
-			{
-				removeChild( background );
-				var game:MountainMonsterIOS = mStarling.root as MountainMonsterIOS;
-				var preloaderImage:Texture = Texture.fromBitmap( background, false, false, 2 );
-				background.bitmapData.dispose();
-				background = null;
-				game.start( preloaderImage );
-				mStarling.start();
-				CONFIG::IS_IOS_VERSION {
-					if( IS_IOS && !gcManager.isAuthenticated() && gcManager.isGameCenterAvailable() )
-					{
-						gcManager.gameCenterAuthentication();
-					}
-				}
-			} );
 			CONFIG::IS_IOS_VERSION {
 				NativeApplication.nativeApplication.addEventListener( flash.events.Event.ACTIVATE, onActivate );
 				NativeApplication.nativeApplication.addEventListener( flash.events.Event.DEACTIVATE, onDeactivate );
@@ -218,13 +175,47 @@
 				stage.addEventListener( flash.events.Event.DEACTIVATE, onDeactivate );
 			}
 			_loaded = true;
+
+			this.createStarling( MountainMonsterIOS );
+
+			this._starlingObject.skipUnchangedFrames = true;
+
+			this.setAppConfig();
+		}
+
+		private function setAppConfig():void
+		{
+			this._starlingObject.simulateMultitouch = false;
+			this._starlingObject.enableErrorChecking = false;
+			this._starlingObject.antiAliasing = 3;
+
+			Starling.current.showStats = true;
+		}
+
+		override protected function onStarlingRootCreated():void
+		{
+			this.removeChild( this._background );
+
+			var game:MountainMonsterIOS = this._starlingObject.root as MountainMonsterIOS;
+			var preloaderImage:Texture = Texture.fromBitmap( this._background, false, false, 2 );
+			game.start( preloaderImage );
+
+			this._background.bitmapData.dispose();
+			this._background = null;
+
+			CONFIG::IS_IOS_VERSION {
+				if( IS_IOS && !gcManager.isAuthenticated() && gcManager.isGameCenterAvailable() )
+				{
+					gcManager.gameCenterAuthentication();
+				}
+			}
 		}
 
 		CONFIG::IS_MOBILE_VERSION {
 			private function pauseByAd( event:SDAdEvent ):void
 			{
 				Tweener.pauseAllTweens();
-				mStarling.stop();
+				this._starlingObject.stop();
 				SoundHandler.setGroupVolume( 'music', 0 );
 				SoundHandler.setBaseGroupVolume( 'music', 0 );
 				SoundHandler.setGroupVolume( 'fx', 0 );
@@ -234,7 +225,7 @@
 			private function resumeByAd( event:SDAdEvent ):void
 			{
 				Tweener.resumeAllTweens();
-				mStarling.start();
+				this._starlingObject.start();
 				SoundHandler.setGroupVolume( 'music', DataManager.getIsMutedState ? 0 : 1 );
 				SoundHandler.setBaseGroupVolume( 'music', DataManager.getIsMutedState ? 0 : 1 );
 				SoundHandler.setGroupVolume( 'fx', DataManager.getIsMutedState ? 0 : 1 );
@@ -244,7 +235,7 @@
 
 		private function onActivate( event:flash.events.Event ):void
 		{
-			mStarling.start();
+			this._starlingObject.start();
 			Tweener.updateTime();
 			Tweener.resumeAllTweens();
 
@@ -259,8 +250,6 @@
 					gcManager.gameCenterAuthentication();
 				}
 			}
-
-			trace( "APP ACTIVATED" );
 		}
 
 		private function onDeactivate( event:flash.events.Event ):void
@@ -271,9 +260,7 @@
 				return;
 			}
 			( Starling.current && Starling.current.root && Starling.current.root as MountainMonsterIOS ).pause();
-			mStarling.stop();
-
-			trace( "APP DEACTIVATED" );
+			this._starlingObject.stop();
 		}
 
 		public static function openToplist():void

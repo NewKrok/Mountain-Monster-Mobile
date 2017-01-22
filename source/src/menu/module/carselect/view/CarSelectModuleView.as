@@ -5,7 +5,7 @@ package src.menu.module.carselect.view
 {
 	import net.fpp.common.starling.StaticAssetManager;
 	import net.fpp.common.starling.module.AModuleView;
-	import net.fpp.common.starling.module.events.ModuleEvent;
+	import net.fpp.common.starling.module.event.ModuleEvent;
 
 	import src.assets.Fonts;
 

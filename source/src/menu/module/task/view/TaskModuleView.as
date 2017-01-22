@@ -5,7 +5,7 @@ package src.menu.module.task.view
 {
 	import net.fpp.common.starling.module.AModel;
 	import net.fpp.common.starling.module.AModuleView;
-	import net.fpp.common.starling.module.events.ModuleEvent;
+	import net.fpp.common.starling.module.event.ModuleEvent;
 
 	import src.constant.CTask;
 
